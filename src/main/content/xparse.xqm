@@ -3,7 +3,7 @@
 : @see https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html
 :)
 module namespace xp="http://expath.org/ns/xparse";
-import module namespace p="xquery-30" at "xquery-30.xqm";
+import module namespace p="xquery-30" at "parsers/xquery-30.xqm";
 
 
 (:~ 
