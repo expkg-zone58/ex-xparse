@@ -1,0 +1,27 @@
+<!--  @see http://cxan.org/faq#add-pkg  -->
+<repo abbrev="ex-xparse">
+  <pkg abbrev="ex-xparse" id="http://expkg-zone58.github.io/ex-xparse">
+    <name>http://expkg-zone58.github.io/ex-xparse</name>
+    <abstract>parsing expressions in XPath or XQuery into XML trees</abstract>
+    <author id="jlumley ">John Lumley</author>
+    <maintainer id="abunce">Andy Bunce</maintainer>
+    <category id="libs">Libraries</category>
+    <home>http://expath.org/ns/xparse</home>
+    <tag>xquery</tag>
+    <tag>parse</tag>
+    <tag>tree</tag>
+    <version num="0.0.0">
+      <dependency processor="basex"/>
+      <file name="ex-xparse-0.0.0.xar" role="pkg"/>
+    </version>
+    <version num="0.0.1">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.0.2">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.0.3">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+  </pkg>
+</repo>
