@@ -14,7 +14,7 @@ declare variable $xp:parsers as element(xp:parser)*:=(
 
 <xp:parser lang="xpath" version="3.0" parser="xpath-30.xqm" namespace="parser" fn="p:parse-XPath"/>,
 <xp:parser lang="xquery" version="3.0" parser="xquery-30.xqm"  namespace="parser" fn="p:parse-XQuery"/>,
-<xp:parser lang="xquery" version="3.1 cr-20141218" parser="xquery-31"  namespace="CR-xquery-31-20141218" fn="p:parse-XQuery"/>,
+<xp:parser lang="xquery" version="3.1 cr-20141218" parser="CR-xquery-31-20141218.xqm"  namespace="CR-xquery-31-20141218" fn="p:parse-XQuery"/>,
 <xp:parser lang="xquery-update" version="3.0 wd-20150219" parser="WD-xquery-update-30-20150219.xqm"  namespace="p:parser" fn="parse-XQuery"/>
 
 );
