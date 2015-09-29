@@ -6,7 +6,7 @@ xquery version "1.0" encoding "UTF-8";
 (:~
  : The parser that was generated for the EcmaScript grammar.
  :)
-module namespace p="EcmaScript";
+module namespace p="parser";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 (:~

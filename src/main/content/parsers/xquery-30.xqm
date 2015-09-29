@@ -6,7 +6,7 @@ xquery version "1.0" encoding "UTF-8";
 (:~
  : The parser that was generated for the xquery-30 grammar.
  :)
-module namespace p="xquery-30";
+module namespace p="parser";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 (:~
