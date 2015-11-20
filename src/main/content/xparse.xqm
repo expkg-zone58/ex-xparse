@@ -10,14 +10,7 @@ module namespace xp="http://expath.org/ns/xparse";
 (:~ 
  :available parsers
 :)
-declare variable $xp:parsers as element(xp:parser)*:=(
-
-<xp:parser lang="xpath" version="3.0" parser="xpath-30.xqm" namespace="parser" fn="p:parse-XPath"/>,
-<xp:parser lang="xquery" version="3.0" parser="xquery-30.xqm"  namespace="parser" fn="p:parse-XQuery"/>,
-<xp:parser lang="xquery" version="3.1 cr-20141218" parser="CR-xquery-31-20141218.xqm"  namespace="CR-xquery-31-20141218" fn="p:parse-XQuery"/>,
-<xp:parser lang="xquery-update" version="3.0 wd-20150219" parser="WD-xquery-update-30-20150219.xqm"  namespace="p:parser" fn="parse-XQuery"/>
-
-);
+declare variable $xp:parsers as element(xp:parser)*:=doc("parsers.xml")/xp:parsers/xp:parser;
 
 declare variable $xp:default-opts:=map{
     "lang":"xpath",
@@ -73,9 +66,17 @@ declare function xp:flatten($input as element()) as element() {
 (:~
  : @return parser function 
  :)
+declare function xp:parser($opts as map(*)) as element(xp:version)
+{
+  $xp:parsers[@lang=$opts?lang]/xp:version[starts-with(@version,$opts?version)]=>head()
+};
+
+(:~
+ : @return parser function as function($xq as xs:string)
+ :)
 declare function xp:get-parser($opts as map(*)) as function(*)
 {
-  let $p:=$xp:parsers[@lang=$opts?lang][starts-with(@version,$opts?version)]=>head()=>exactly-one()
+  let $p:= xp:parser($opts)
   return xp:parse(?,$p/@namespace,"parsers/" || $p/@parser,$p/@fn)
 };
 

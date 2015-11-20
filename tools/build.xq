@@ -3,9 +3,9 @@
  :)
 declare namespace pkg="http://expath.org/ns/pkg";
 import module namespace build = "quodatum.utils.build" at "buildx.xqm";
-
-declare variable $src:=resolve-uri("src/main/");
-declare variable $dest:=resolve-uri("dist/");
+declare variable $base:=resolve-uri("../");
+declare variable $src:=resolve-uri("../src/main/");
+declare variable $dest:=resolve-uri("../dist/");
 
 (:~ 
  : the package definition as a pkg:package 
@@ -35,5 +35,5 @@ return (build:transform(
                                          resolve-uri($name,$dest),
                                          archive:create($paths,$data))}
            ),
-           build:publish($package,fn:resolve-uri("package.xml"))
+           build:publish($package,resolve-uri("package.xml",$base))
  )
