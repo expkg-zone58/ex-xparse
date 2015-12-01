@@ -3,7 +3,8 @@ Parses expressions in XPath  or XQuery into XML trees.
 An implementation of the EXpath [xparse](https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html) proposal.
 The [REX](http://www.bottlecaps.de/rex/) parser generator was used to generate the parsers.
 
-
+## Note: Stackoverflow error
+If you get a stackoverflow error - then the stack size may be increased via an JVM option in the BaseX script. E.g. `-Xss2m`
 
 ## Available parsers
 Selected parser is first where lang matches and version starts-with. see `xp:parser($opts)`
