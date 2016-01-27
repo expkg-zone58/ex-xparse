@@ -16,19 +16,4 @@ declare variable $content:=resolve-uri("content/",$src);
 declare variable $dest-doc:=resolve-uri("doc/",$dest);
 
 
-let $files:=build:files($src) 
-let $name:= build:xar-name($package)
-
-return (
-         (: save xqdoc :) 
-          build:files($content)!build:write-xqdoc(.,$content,$dest-doc),
-          
-         (: write xar file :)
-          file:write-binary(
-                 resolve-uri($name,$dest),
-                 archive:create($files,$files!file:read-binary(fn:resolve-uri(.,$src)))
-          ),
-          
-          (: update package.xml located at $cxan :)
-           build:publish($package,resolve-uri("package.xml",$base))
- )
+build:files($src) 
