@@ -1,27 +1,30 @@
 <parsers xmlns="http://expath.org/ns/xparse">
-<!-- 
- available languages and versions with  parser implementation details.
- -->
+	<!-- available languages and versions with parser implementation details. -->
 	<parser lang="xpath">
-		<version version= "3.0" parser="xpath-30.xqm" namespace="parser" fn="p:parse-XPath" />
+		<version version="3.0" parser="xpath-30.xqm" namespace="parser"
+			fn="p:parse-XPath" />
 	</parser>
-	
+
 	<parser lang="xquery">
-        <version version="3.0" parser="xquery-30.xquery" namespace="xquery-30"
-            fn="p:parse-XQuery" />
-            
+		<version version="3.0" parser="xquery-30.xquery" namespace="xquery-30"
+			fn="p:parse-XQuery" />
+
 		<version version="3.0" parser="xquery-30.xqm" namespace="parser"
 			fn="p:parse-XQuery" />
-			
+
+		<version lang="xquery" version="3.1 cr-20151217" parser="CR-xquery-31-20151217.xquery"
+			namespace="CR-xquery-31-20151217" fn="p:parse-XQuery" />
+
 		<version lang="xquery" version="3.1 cr-20141218" parser="CR-xquery-31-20141218.xqm"
 			namespace="CR-xquery-31-20141218" fn="p:parse-XQuery" />
-			
+<version lang="xquery" version="3.1 rex5.37" parser="CR-xquery-31-20141218.xquery"
+            namespace="CR-xquery-31-20141218" fn="p:parse-XQuery" />
 	</parser>
-	
+
 	<parser lang="xquery-update">
 		<version version="3.0 wd-20150219" parser="WD-xquery-update-30-20150219.xqm"
 			namespace="p:parser" fn="parse-XQuery" />
-			
+
 	</parser>
 
 </parsers>
