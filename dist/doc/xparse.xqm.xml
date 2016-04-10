@@ -1,6 +1,6 @@
 <xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
   <xqdoc:control>
-    <xqdoc:date>2016-03-27T23:17:03.863+01:00</xqdoc:date>
+    <xqdoc:date>2016-04-10T20:20:23.642+01:00</xqdoc:date>
     <xqdoc:version>1.1</xqdoc:version>
   </xqdoc:control>
   <xqdoc:module type="library">
@@ -119,8 +119,8 @@ uses basex inspect:functions</xqdoc:see>
         <xqdoc:description/>
         <xqdoc:return>parser function</xqdoc:return>
       </xqdoc:comment>
-      <xqdoc:name>xp:parser</xqdoc:name>
-      <xqdoc:signature>declare function xp:parser($opts as map(*)) as element(xp:version)</xqdoc:signature>
+      <xqdoc:name>xp:version</xqdoc:name>
+      <xqdoc:signature>declare function xp:version($opts as map(*)) as map(*)</xqdoc:signature>
       <xqdoc:parameters>
         <xqdoc:parameter>
           <xqdoc:name>opts</xqdoc:name>
@@ -128,7 +128,20 @@ uses basex inspect:functions</xqdoc:see>
         </xqdoc:parameter>
       </xqdoc:parameters>
       <xqdoc:return>
-        <xqdoc:type>element(xp:version)</xqdoc:type>
+        <xqdoc:type>map(*)</xqdoc:type>
+      </xqdoc:return>
+    </xqdoc:function>
+    <xqdoc:function arity="1">
+      <xqdoc:name>xp:java-fixup</xqdoc:name>
+      <xqdoc:signature>declare function xp:java-fixup($name as xs:string) as xs:string</xqdoc:signature>
+      <xqdoc:parameters>
+        <xqdoc:parameter>
+          <xqdoc:name>name</xqdoc:name>
+          <xqdoc:type>xs:string</xqdoc:type>
+        </xqdoc:parameter>
+      </xqdoc:parameters>
+      <xqdoc:return>
+        <xqdoc:type>xs:string</xqdoc:type>
       </xqdoc:return>
     </xqdoc:function>
     <xqdoc:function arity="1">
@@ -146,31 +159,6 @@ uses basex inspect:functions</xqdoc:see>
       </xqdoc:parameters>
       <xqdoc:return>
         <xqdoc:type>function(*)</xqdoc:type>
-      </xqdoc:return>
-    </xqdoc:function>
-    <xqdoc:function arity="4">
-      <xqdoc:name>xp:parse</xqdoc:name>
-      <xqdoc:signature>declare function xp:parse($src as xs:string, $namespace as xs:string, $loc as item()*, $fn as item()*) as item()*</xqdoc:signature>
-      <xqdoc:parameters>
-        <xqdoc:parameter>
-          <xqdoc:name>src</xqdoc:name>
-          <xqdoc:type>xs:string</xqdoc:type>
-        </xqdoc:parameter>
-        <xqdoc:parameter>
-          <xqdoc:name>namespace</xqdoc:name>
-          <xqdoc:type>xs:string</xqdoc:type>
-        </xqdoc:parameter>
-        <xqdoc:parameter>
-          <xqdoc:name>loc</xqdoc:name>
-          <xqdoc:type occurrence="*">item()</xqdoc:type>
-        </xqdoc:parameter>
-        <xqdoc:parameter>
-          <xqdoc:name>fn</xqdoc:name>
-          <xqdoc:type occurrence="*">item()</xqdoc:type>
-        </xqdoc:parameter>
-      </xqdoc:parameters>
-      <xqdoc:return>
-        <xqdoc:type occurrence="*">item()</xqdoc:type>
       </xqdoc:return>
     </xqdoc:function>
   </xqdoc:functions>

@@ -1,0 +1,10 @@
+<package xmlns="http://www.basex.org/modules/pkg">
+	<jar>xpath_30.jar</jar>
+	<jar>xquery_10.jar</jar>
+	<jar>xquery_30.jar</jar>
+	<jar>CR_xquery_31_20151217.jar</jar>
+	<jar>XQDocComments.jar</jar>
+	<jar>XQueryML30.jar</jar>
+	<jar>EcmaScript.jar</jar>
+	<class>xpath_30</class>
+</package>

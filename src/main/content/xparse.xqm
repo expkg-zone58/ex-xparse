@@ -14,7 +14,7 @@ declare variable $xp:parsers as element(xp:parser)*:=doc("parsers.xml")/xp:parse
 
 declare variable $xp:default-opts:=map{
     "lang":"xpath",
-    "version":"3.0",
+    "version":"",
     "flatten":true()
 };
 (:~ 
@@ -66,27 +66,25 @@ declare function xp:flatten($input as element()) as element() {
 (:~
  : @return parser function 
  :)
-declare function xp:parser($opts as map(*)) as element(xp:version)
-{
-  $xp:parsers[@lang=$opts?lang]/xp:version[starts-with(@version,$opts?version)]=>head()
+declare function xp:version($opts as map(*))
+as map(*){
+  let $version:=$xp:parsers[@lang=$opts?lang]/xp:version[starts-with(@version,$opts?version)]=>head()
+  return map{"ebnf":$version/@ebnf/xp:java-fixup(.),
+             "sym":$version/@sym/string()}
+};
+
+declare function xp:java-fixup($name as xs:string) 
+as xs:string{
+translate($name,"-","_")
 };
 
 (:~
  : @return parser function as function($xq as xs:string)
  :)
-declare function xp:get-parser($opts as map(*)) as function(*)
-{
-  let $p:= xp:parser($opts)
-  return xp:parse(?,$p/@namespace,"parsers/" || $p/@parser,$p/@fn)
+declare function xp:get-parser($opts as map(*)) 
+as function(*){
+  let $p:= xp:version($opts)
+  let $code:=``[function($src){Q{java:`{$p?ebnf}`}parse`{$p?sym}`($src)}]`` 
+  return  xquery:eval($code)
 };
 
-(:
- : $src as xs:string,
- : $nms,
- : $loc,
- : $fn
- :)
-declare function xp:parse($src as xs:string,$namespace as xs:string,$loc,$fn){
-  let $code:='import module namespace p="%s" at "%s"; declare variable $src external;%s($src)'  
-  return xquery:eval(out:format($code,$namespace,resolve-uri($loc),$fn),map{"src":$src})
-};

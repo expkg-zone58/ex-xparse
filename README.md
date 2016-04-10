@@ -1,53 +1,48 @@
 # ex-xparse
-Parses expressions in XPath  or XQuery into XML trees. 
-An implementation of the EXpath [xparse](https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html) proposal.
-The [REX](http://www.bottlecaps.de/rex/) parser generator was used to generate the parsers.
+Parses expressions in XPath or XQuery into XML trees. 
+An implementation of the EXPath [xparse](https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html) proposal.
+The [REx](http://www.bottlecaps.de/rex/) parser generator was used to generate the parsers.
+This release uses the new -basex option to generate Java for BaseX.
 
-## Note: Stackoverflow error
-If you get a stackoverflow error - then the stack size may be increased via an JVM option in the BaseX script. E.g. `-Xss2m`
+
 
 ## Available parsers
 Selected parser is first where lang matches and version starts-with. see `xp:parser($opts)`
 ````
-<parsers xmlns="http://expath.org/ns/xparse">
-<!-- 
- available languages and versions with  parser implementation details.
- -->
     <parser lang="xpath">
-        <version version= "3.0" parser="xpath-30.xqm" namespace="parser" fn="p:parse-XPath" />
+        <version version="3.0" ebnf="xpath-30" sym="XPath" />
     </parser>
-    
+
     <parser lang="xquery">
-
-        <version version="3.0" parser="xquery-30.xquery" namespace="xquery-30"
-            fn="p:parse-XQuery" />
+       <version version="3.1 cr-20151217" ebnf="CR-xquery-31-20151217"
+            sym="XQuery" />
             
-        <version version="3.0" parser="xquery-30.xqm" namespace="parser"
-            fn="p:parse-XQuery" />
-            
-        <version lang="xquery" version="3.1 cr-20141218" parser="CR-xquery-31-20141218.xqm"
-            namespace="CR-xquery-31-20141218" fn="p:parse-XQuery" />
-            
-    </parser>
+        <version version="3.0" ebnf="xquery-30" sym="XQuery" />
     
-    <parser lang="xquery-update">
-    
-        <version version="3.0 wd-20150219" parser="WD-xquery-update-30-20150219.xqm"
-            namespace="p:parser" fn="parse-XQuery" />
-            
+        <version version="1.0" ebnf="xquery-10" sym="XQuery" />
+        
+        <version version="3.0 ML" ebnf="XQueryML30" sym="XQuery"
+            options="-backtrack" />
     </parser>
 
-</parsers>
+    <parser lang="xqdoc-comments">
+        <version version="20160405" ebnf="XQDocComments" sym="Comments" />
+    </parser>
+
+    <parser lang="ecmascript">
+        <version version="5" ebnf="EcmaScript" sym="Program"
+            options="-ll 1 -backtrack -asi" />
+    </parser>
 ````
 ## Options
 
 | Option | Type---  | Values      |Default  |Notes                                            |
 |--------|----------|-------------|---------|-------------------------------------------------|
-|lang    |xs:string |XPath, XQuery|XPath    |The language to be parsed (case insensitive)     |
-|version |xs:string          |             |3.0      |                                        |
+|lang    |xs:string |XPath, XQuery|XPath    |The language to be parsed                        |
+|version |xs:string          |    |""       |                                                 |
 |flatten |xs:boolean|             |true()   |Flatten the parse tree                           |
  
-## Example
+## Examples
 ````
 xp:parse("2+3",map{"lang":"xquery"}) 
 ````
@@ -165,4 +160,41 @@ Result:
   <EOF/>
 </XPath>
 ````
+Versions
+````
+import module namespace xp="http://expath.org/ns/xparse";
+xp:parse("map{'a':42}",map{"lang":"xquery"}) 
+````
+Result
+````
+<XQuery>
+  <MainModule>
+    <Prolog/>
+    <MapConstructor>
+      <TOKEN>map</TOKEN>
+      <TOKEN>{</TOKEN>
+      <MapConstructorEntry>
+        <StringLiteral>'a'</StringLiteral>
+        <TOKEN>:</TOKEN>
+        <IntegerLiteral>42</IntegerLiteral>
+      </MapConstructorEntry>
+      <TOKEN>}</TOKEN>
+    </MapConstructor>
+  </MainModule>
+  <EOF/>
+</XQuery>
+````
+
+````
+import module namespace xp="http://expath.org/ns/xparse";
+xp:parse("map{'a':42}",map{"lang":"xquery","version":"3.0"}) 
+````
+Result
+````
+<ERROR b="4" e="4" s="158">lexical analysis failed
+while expecting [S, EOF, '!', '!=', '#', '(', '(:', ')', '*', '+', ',', '-', '/', '//', ';', '&lt;', '&lt;&lt;', '&lt;=', '=', '&gt;', '&gt;=', '&gt;&gt;', '[', ']', 'and', 'ascending', 'case', 'cast', 'castable', 'collation', 'count', 'default', 'descending', 'div', 'else', 'empty', 'end', 'eq', 'except', 'for', 'ge', 'group', 'gt', 'idiv', 'instance', 'intersect', 'is', 'le', 'let', 'lt', 'mod', 'ne', 'only', 'or', 'order', 'return', 'satisfies', 'stable', 'start', 'to', 'treat', 'union', 'where', '|', '||', '}']
+at line 1, column 4:
+...{'a':42}...</ERROR>
+````
+
 

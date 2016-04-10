@@ -35,5 +35,26 @@
     <version num="0.2.3">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
+    <version num="0.3.0">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.3.1">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.3.2">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.3.3">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.3.4">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.3.5">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.3.6">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
   </pkg>
 </repo>

@@ -1,0 +1,12 @@
+<package xmlns="http://cxan.org/ns/package" id="xparse">
+    <abstract>Parses expressions in XPath or XQuery into XML trees. 
+    An implementation of the EXpath xparse proposal. 
+    The REX parser generator was used to generate the parsers.</abstract>
+    <author id="abunce">Andy Bunce</author>
+    <maintainer id="abunce">Andy Bunce</maintainer>
+    <home>https://github.com/expkg-zone58/ex-xparse</home>
+    <category id="libs">Library</category>
+    <tag>parser</tag>
+    <tag>syntax</tag>
+    <tag>graphic</tag>
+</package>

@@ -1,30 +1,33 @@
 <parsers xmlns="http://expath.org/ns/xparse">
 	<!-- available languages and versions with parser implementation details. -->
+
 	<parser lang="xpath">
-		<version version="3.0" parser="xpath-30.xqm" namespace="parser"
-			fn="p:parse-XPath" />
+		<version version="3.0" ebnf="xpath-30" sym="XPath" />
 	</parser>
 
 	<parser lang="xquery">
-		<version version="3.0" parser="xquery-30.xquery" namespace="xquery-30"
-			fn="p:parse-XQuery" />
-
-		<version version="3.0" parser="xquery-30.xqm" namespace="parser"
-			fn="p:parse-XQuery" />
-
-		<version lang="xquery" version="3.1 cr-20151217" parser="CR-xquery-31-20151217.xquery"
-			namespace="CR-xquery-31-20151217" fn="p:parse-XQuery" />
-
-		<version lang="xquery" version="3.1 cr-20141218" parser="CR-xquery-31-20141218.xqm"
-			namespace="CR-xquery-31-20141218" fn="p:parse-XQuery" />
-<version lang="xquery" version="3.1 rex5.37" parser="CR-xquery-31-20141218.xquery"
-            namespace="CR-xquery-31-20141218" fn="p:parse-XQuery" />
+	   <version version="3.1 cr-20151217" ebnf="CR-xquery-31-20151217"
+            sym="XQuery" />
+            
+		<version version="3.0" ebnf="xquery-30" sym="XQuery" />
+	
+        <version version="1.0" ebnf="xquery-10" sym="XQuery" />
+        
+		<version version="3.0 ML" ebnf="XQueryML30" sym="XQuery"
+			options="-backtrack" />
 	</parser>
 
-	<parser lang="xquery-update">
-		<version version="3.0 wd-20150219" parser="WD-xquery-update-30-20150219.xqm"
-			namespace="p:parser" fn="parse-XQuery" />
-
+	<parser lang="xqdoc-comments">
+		<version version="20160405" ebnf="XQDocComments" sym="Comments" />
 	</parser>
+
+    <parser lang="ecmascript">
+        <version version="5" ebnf="EcmaScript" sym="Program"
+            options="-ll 1 -backtrack -asi" />
+    </parser>
+<!-- 	<parser lang="xquery-update"> -->
+<!-- 		<version version="3.0 wd-20150219" ebnf="WD-xquery-update-30-20150219" -->
+<!-- 			sym="XQuery" /> -->
+<!--     </parser> -->
 
 </parsers>
