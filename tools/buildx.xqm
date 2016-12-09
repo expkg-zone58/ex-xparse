@@ -16,7 +16,7 @@ declare namespace pkg="http://expath.org/ns/pkg";
  declare function files($src as xs:string) as xs:string*
  {
    fn:filter(file:list($src,fn:true()),
-          function ($f){file:is-file($src || $f)}
+          function ($f){($src || $f)=>fn:translate("\","/")=>file:is-file()}
         )
           !fn:translate(.,"\","/") 
  };

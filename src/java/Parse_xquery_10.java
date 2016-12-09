@@ -1,5 +1,7 @@
-// This file was generated on Sun Apr 10, 2016 19:44 (UTC+01) by REx v5.38 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
-// REx command line: xquery-10.ebnf -java -basex -tree
+// This file was generated on Fri Dec 9, 2016 12:22 (UTC+01) by REx v5.41 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
+// REx command line: file.ebnf -tree -java -basex -name expkg-zone58.ex-xparse.Parse-xquery-10
+
+package expkg_zone58.ex_xparse;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,9 +16,8 @@ import org.basex.query.value.node.DBNode;
 import org.basex.util.Atts;
 import org.basex.util.Token;
 
-public class xquery_10
+public class Parse_xquery_10
 {
-	public xquery_10() {}
   public static class ParseException extends RuntimeException
   {
     private static final long serialVersionUID = 1L;
@@ -168,14 +169,14 @@ public class xquery_10
     BaseXFunction baseXFunction = new BaseXFunction()
     {
       @Override
-      public void execute(xquery_10 p) {p.parse_XQuery();}
+      public void execute(Parse_xquery_10 p) {p.parse_XQuery();}
     };
     return baseXFunction.call(str);
   }
 
   public static abstract class BaseXFunction
   {
-    protected abstract void execute(xquery_10 p);
+    protected abstract void execute(Parse_xquery_10 p);
 
     public ANode call(Str str) throws IOException
     {
@@ -188,7 +189,8 @@ public class xquery_10
       MemBuilder memBuilder = new MemBuilder(input, singleParser);
       memBuilder.init();
       BaseXTreeBuilder treeBuilder = new BaseXTreeBuilder(memBuilder);
-      xquery_10 parser = new xquery_10(input, treeBuilder);
+      Parse_xquery_10 parser = new Parse_xquery_10();
+      parser.initialize(input, treeBuilder);
       try
       {
         execute(parser);
@@ -296,7 +298,11 @@ public class xquery_10
     }
   }
 
-  public xquery_10(CharSequence string, EventHandler t)
+  public Parse_xquery_10()
+  {
+  }
+
+  public Parse_xquery_10(CharSequence string, EventHandler t)
   {
     initialize(string, t);
   }

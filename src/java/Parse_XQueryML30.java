@@ -1,5 +1,7 @@
-// This file was generated on Sun Apr 10, 2016 19:54 (UTC+01) by REx v5.38 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
-// REx command line: XQueryML30.ebnf -java -basex -tree -backtrack
+// This file was generated on Fri Dec 9, 2016 12:23 (UTC+01) by REx v5.41 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
+// REx command line: file.ebnf -backtrack -tree -java -basex -name expkg-zone58.ex-xparse.Parse-XQueryML30
+
+package expkg_zone58.ex_xparse;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,9 +16,8 @@ import org.basex.query.value.node.DBNode;
 import org.basex.util.Atts;
 import org.basex.util.Token;
 
-public class XQueryML30
+public class Parse_XQueryML30
 {
-	public XQueryML30() {}
   public static class ParseException extends RuntimeException
   {
     private static final long serialVersionUID = 1L;
@@ -168,14 +169,14 @@ public class XQueryML30
     BaseXFunction baseXFunction = new BaseXFunction()
     {
       @Override
-      public void execute(XQueryML30 p) {p.parse_XQuery();}
+      public void execute(Parse_XQueryML30 p) {p.parse_XQuery();}
     };
     return baseXFunction.call(str);
   }
 
   public static abstract class BaseXFunction
   {
-    protected abstract void execute(XQueryML30 p);
+    protected abstract void execute(Parse_XQueryML30 p);
 
     public ANode call(Str str) throws IOException
     {
@@ -188,7 +189,8 @@ public class XQueryML30
       MemBuilder memBuilder = new MemBuilder(input, singleParser);
       memBuilder.init();
       BaseXTreeBuilder treeBuilder = new BaseXTreeBuilder(memBuilder);
-      XQueryML30 parser = new XQueryML30(input, treeBuilder);
+      Parse_XQueryML30 parser = new Parse_XQueryML30();
+      parser.initialize(input, treeBuilder);
       try
       {
         execute(parser);
@@ -296,7 +298,11 @@ public class XQueryML30
     }
   }
 
-  public XQueryML30(CharSequence string, EventHandler t)
+  public Parse_XQueryML30()
+  {
+  }
+
+  public Parse_XQueryML30(CharSequence string, EventHandler t)
   {
     initialize(string, t);
   }

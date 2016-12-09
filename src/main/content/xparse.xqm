@@ -30,7 +30,8 @@ declare function xp:parse($exp as xs:string)  as element()
 :)
 declare function xp:parse($exp as xs:string, $options as map(*))   as element() 
 {
-    let $opts:=map:merge(($xp:default-opts,$options))
+(: map:merge spec change force error pre basex 8.6:)
+    let $opts:=map:merge(($xp:default-opts,$options),map{"duplicates":"use-last"})
     let $parser:=xp:get-parser($opts)
     let $r:= $parser($exp)
     return if($opts?flatten)then xp:flatten($r) else $r
@@ -68,7 +69,7 @@ declare function xp:flatten($input as element()) as element() {
  :)
 declare function xp:version($opts as map(*))
 as map(*){
-  let $version:=$xp:parsers[@lang=$opts?lang]/xp:version[starts-with(@version,$opts?version)]=>head()
+  let $version:=$xp:parsers[@lang=lower-case($opts?lang)]/xp:version[starts-with(@version,$opts?version)]=>head()
   return map{"ebnf":$version/@ebnf/xp:java-fixup(.),
              "sym":$version/@sym/string()}
 };
@@ -84,7 +85,7 @@ translate($name,"-","_")
 declare function xp:get-parser($opts as map(*)) 
 as function(*){
   let $p:= xp:version($opts)
-  let $code:=``[function($src){Q{java:`{$p?ebnf}`}parse`{$p?sym}`($src)}]`` 
+  let $code:=``[function($src){Q{java:expkg_zone58.ex_xparse.Parse_`{$p?ebnf}`}parse`{$p?sym}`($src)}]``
   return  xquery:eval($code)
 };
 

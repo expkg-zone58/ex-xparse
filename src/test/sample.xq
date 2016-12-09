@@ -1,4 +1,7 @@
 import module namespace xp="http://expath.org/ns/xparse";
-declare variable $opt1:=map{"lang":"xpath","flatten":true()};
-xp:parse("2+2",$opt1)  
+"C:\Users\andy\workspace\app-doc\src\static\doc\feats\apps\apps.js"
+!unparsed-text(.)
+!xp:parse(.,map{"lang":"ecmascript"})
+
+ 
  

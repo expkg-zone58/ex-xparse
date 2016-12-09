@@ -1,0 +1,17 @@
+/* search query syntax 
+ * based on: http://blog.case.edu/bmb12/2006/03/google_search_syntax_bnf
+ */
+L ::= expr | expr L
+expr ::= term | binary_expr
+binary_expr ::= term " " binary_op " " term
+binary_op ::= "*" | "OR" | "AND"
+include_bool ::= "+" | "-"
+term ::= ([include_bool] [modifier ":"] (literal | range)) | ("~" literal)
+modifier ::= (letter | "_")+
+literal ::= word | quoted_words
+quoted_words ::= '"' word (" " word)* '"'
+word ::= (letter | digit | "_")+
+number ::= digit+
+range ::= number (".." | "...") number
+letter ::= "A"..."Z" | "a"..."z"
+digit ::= "0"..."9"

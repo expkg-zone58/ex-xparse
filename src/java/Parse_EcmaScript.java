@@ -1,5 +1,7 @@
-// This file was generated on Sun Apr 10, 2016 19:56 (UTC+01) by REx v5.38 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
-// REx command line: EcmaScript.ebnf -java -basex -tree -ll 1 -backtrack -asi
+// This file was generated on Fri Dec 9, 2016 12:23 (UTC+01) by REx v5.41 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
+// REx command line: file.ebnf -ll 1 -backtrack -asi -tree -java -basex -name expkg-zone58.ex-xparse.Parse-EcmaScript
+
+package expkg_zone58.ex_xparse;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,9 +16,8 @@ import org.basex.query.value.node.DBNode;
 import org.basex.util.Atts;
 import org.basex.util.Token;
 
-public class EcmaScript
+public class Parse_EcmaScript
 {
-	public EcmaScript() {}
   public static class ParseException extends RuntimeException
   {
     private static final long serialVersionUID = 1L;
@@ -168,14 +169,14 @@ public class EcmaScript
     BaseXFunction baseXFunction = new BaseXFunction()
     {
       @Override
-      public void execute(EcmaScript p) {p.parse_Program();}
+      public void execute(Parse_EcmaScript p) {p.parse_Program();}
     };
     return baseXFunction.call(str);
   }
 
   public static abstract class BaseXFunction
   {
-    protected abstract void execute(EcmaScript p);
+    protected abstract void execute(Parse_EcmaScript p);
 
     public ANode call(Str str) throws IOException
     {
@@ -188,7 +189,8 @@ public class EcmaScript
       MemBuilder memBuilder = new MemBuilder(input, singleParser);
       memBuilder.init();
       BaseXTreeBuilder treeBuilder = new BaseXTreeBuilder(memBuilder);
-      EcmaScript parser = new EcmaScript(input, treeBuilder);
+      Parse_EcmaScript parser = new Parse_EcmaScript();
+      parser.initialize(input, treeBuilder);
       try
       {
         execute(parser);
@@ -296,7 +298,11 @@ public class EcmaScript
     }
   }
 
-  public EcmaScript(CharSequence string, EventHandler t)
+  public Parse_EcmaScript()
+  {
+  }
+
+  public Parse_EcmaScript(CharSequence string, EventHandler t)
   {
     initialize(string, t);
   }

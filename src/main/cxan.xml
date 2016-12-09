@@ -7,6 +7,7 @@
     <home>https://github.com/expkg-zone58/ex-xparse</home>
     <category id="libs">Library</category>
     <tag>parser</tag>
-    <tag>syntax</tag>
-    <tag>graphic</tag>
+    <tag>grammar</tag>
+    <tag>ebnf</tag>
+    
 </package>

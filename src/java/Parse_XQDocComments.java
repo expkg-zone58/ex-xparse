@@ -1,5 +1,7 @@
-// This file was generated on Sun Apr 10, 2016 19:04 (UTC+01) by REx v5.38 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
-// REx command line: XQDocComments.ebnf -java -basex -tree
+// This file was generated on Fri Dec 9, 2016 12:23 (UTC+01) by REx v5.41 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
+// REx command line: file.ebnf -tree -java -basex -name expkg-zone58.ex-xparse.Parse-XQDocComments
+
+package expkg_zone58.ex_xparse;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,7 +16,7 @@ import org.basex.query.value.node.DBNode;
 import org.basex.util.Atts;
 import org.basex.util.Token;
 
-public class XQDocComments
+public class Parse_XQDocComments
 {
   public static class ParseException extends RuntimeException
   {
@@ -167,14 +169,14 @@ public class XQDocComments
     BaseXFunction baseXFunction = new BaseXFunction()
     {
       @Override
-      public void execute(XQDocComments p) {p.parse_Comments();}
+      public void execute(Parse_XQDocComments p) {p.parse_Comments();}
     };
     return baseXFunction.call(str);
   }
 
   public static abstract class BaseXFunction
   {
-    protected abstract void execute(XQDocComments p);
+    protected abstract void execute(Parse_XQDocComments p);
 
     public ANode call(Str str) throws IOException
     {
@@ -187,7 +189,8 @@ public class XQDocComments
       MemBuilder memBuilder = new MemBuilder(input, singleParser);
       memBuilder.init();
       BaseXTreeBuilder treeBuilder = new BaseXTreeBuilder(memBuilder);
-      XQDocComments parser = new XQDocComments(input, treeBuilder);
+      Parse_XQDocComments parser = new Parse_XQDocComments();
+      parser.initialize(input, treeBuilder);
       try
       {
         execute(parser);
@@ -295,7 +298,11 @@ public class XQDocComments
     }
   }
 
-  public XQDocComments(CharSequence string, EventHandler t)
+  public Parse_XQDocComments()
+  {
+  }
+
+  public Parse_XQDocComments(CharSequence string, EventHandler t)
   {
     initialize(string, t);
   }

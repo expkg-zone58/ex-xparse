@@ -2,25 +2,32 @@
 Parses expressions in XPath or XQuery into XML trees. 
 An implementation of the EXPath [xparse](https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html) proposal.
 The [REx](http://www.bottlecaps.de/rex/) parser generator was used to generate the parsers.
-This release uses the new -basex option to generate Java for BaseX.
+This release uses the -basex option to generate Java for BaseX.
 
-
+This release requires BaseX 8.6. This is a result of XQuery spec changes to `map:merge`
 
 ## Available parsers
 Selected parser is first where lang matches and version starts-with. see `xp:parser($opts)`
-````
+```xml
+  <parsers xmlns="http://expath.org/ns/xparse">
+    <!-- available languages and versions with REx parser implementation options. 
+        add "-tree -java -basex" -->
+
     <parser lang="xpath">
         <version version="3.0" ebnf="xpath-30" sym="XPath" />
     </parser>
 
     <parser lang="xquery">
-       <version version="3.1 cr-20151217" ebnf="CR-xquery-31-20151217"
-            sym="XQuery" />
+        <version version="3.1 basex-20161204" ebnf="BaseX" sym="XQuery"
+            options="-ll 2 -backtrack " />
             
+        <version version="3.1 cr-20151217" ebnf="CR-xquery-31-20151217"
+            sym="XQuery" />
+
         <version version="3.0" ebnf="xquery-30" sym="XQuery" />
-    
+
         <version version="1.0" ebnf="xquery-10" sym="XQuery" />
-        
+
         <version version="3.0 ML" ebnf="XQueryML30" sym="XQuery"
             options="-backtrack" />
     </parser>
@@ -33,17 +40,27 @@ Selected parser is first where lang matches and version starts-with. see `xp:par
         <version version="5" ebnf="EcmaScript" sym="Program"
             options="-ll 1 -backtrack -asi" />
     </parser>
+    <parser lang="rex">
+        <version version="5.41" ebnf="REx" sym="Grammar" />
+    </parser>
+    <!-- <parser lang="xquery-update"> -->
+    <!-- <version version="3.0 wd-20150219" ebnf="WD-xquery-update-30-20150219" -->
+    <!-- sym="XQuery" /> -->
+    <!-- </parser> -->
+
+</parsers>
 ````
 ## Options
 
 | Option | Type---  | Values      |Default  |Notes                                            |
 |--------|----------|-------------|---------|-------------------------------------------------|
 |lang    |xs:string |XPath, XQuery|XPath    |The language to be parsed                        |
-|version |xs:string          |    |""       |                                                 |
+|version |xs:string |             |""       |                                                 |
 |flatten |xs:boolean|             |true()   |Flatten the parse tree                           |
  
 ## Examples
-````
+```xquery
+import module namespace xp="http://expath.org/ns/xparse";
 xp:parse("2+3",map{"lang":"xquery"}) 
 ````
 result
@@ -61,11 +78,11 @@ result
 </XQuery>
 ````
 With options
-````
+```xquery
 import module namespace xp="http://expath.org/ns/xparse";
 
 xp:parse("1+2",map{"lang":"xpath","flatten":false()})
-````
+```
 
 Result:
 ````
