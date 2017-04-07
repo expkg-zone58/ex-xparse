@@ -2,18 +2,16 @@
  : ex-dotml tests
  :)
 module namespace test = 'http://basex.org/modules/xqunit-tests';
-import module namespace ex-dotml="http://expkg-zone58.github.io/ex-dotml";
-
-declare variable $test:simple:=
-<graph xmlns="http://www.martin-loetzsch.de/DOTML">
-  <node id="test"/>
-</graph>;
+import module namespace xp= "expkg-zone58:text.parse" (: at "../main/content/xparse.xqm" :);
 
 declare %unit:test
 (:~
- : check graph node converts
+ : check can parse javascript
  :) 
-function  test:simple(){
-  let $s:= ex-dotml:to-dot($test:simple)
-  return unit:assert(starts-with($s,"digraph "))
+function  test:js()
+{
+ let $r:= "resources\apps.js"
+        !unparsed-text(.)
+        !xp:parse(.,map{"lang":"ecmascript"})
+  return unit:assert($r)
 };

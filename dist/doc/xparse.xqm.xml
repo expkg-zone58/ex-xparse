@@ -1,38 +1,43 @@
 <xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
   <xqdoc:control>
-    <xqdoc:date>2016-12-09T17:29:14.989Z</xqdoc:date>
+    <xqdoc:date>2017-04-07T22:17:41.464+01:00</xqdoc:date>
     <xqdoc:version>1.1</xqdoc:version>
   </xqdoc:control>
   <xqdoc:module type="library">
-    <xqdoc:uri>http://expath.org/ns/xparse</xqdoc:uri>
+    <xqdoc:uri>expkg-zone58:text.parse</xqdoc:uri>
     <xqdoc:name>xparse.xqm</xqdoc:name>
     <xqdoc:comment>
-      <xqdoc:description>xparse module</xqdoc:description>
-      <xqdoc:see>https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html
-uses basex inspect:functions</xqdoc:see>
+      <xqdoc:description>This module is designed to specify a small library of functions for parsing expressions in a number of 
+languages  into XML trees, and in the reverse direction serialising these trees into equivalent string expressions.
+Parsers are available for versions for XPath and XQuery.</xqdoc:description>
+      <xqdoc:see>https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html</xqdoc:see>
     </xqdoc:comment>
   </xqdoc:module>
   <xqdoc:namespaces>
-    <xqdoc:namespace prefix="xp" uri="http://expath.org/ns/xparse"/>
+    <xqdoc:namespace prefix="xp" uri="expkg-zone58:text.parse"/>
+    <xqdoc:namespace prefix="ann" uri="http://www.w3.org/2012/xquery"/>
   </xqdoc:namespaces>
   <xqdoc:imports/>
   <xqdoc:variables>
     <xqdoc:variable>
       <xqdoc:name>xp:parsers</xqdoc:name>
       <xqdoc:comment>
-        <xqdoc:description>available parsers</xqdoc:description>
+        <xqdoc:description>XML descriptions of the available parsers.</xqdoc:description>
       </xqdoc:comment>
       <xqdoc:type occurrence="*">element(xp:parser)</xqdoc:type>
     </xqdoc:variable>
     <xqdoc:variable>
       <xqdoc:name>xp:default-opts</xqdoc:name>
+      <xqdoc:comment>
+        <xqdoc:description>default options for parse function.</xqdoc:description>
+      </xqdoc:comment>
       <xqdoc:type>map(*)</xqdoc:type>
     </xqdoc:variable>
   </xqdoc:variables>
   <xqdoc:functions>
     <xqdoc:function arity="1">
       <xqdoc:comment>
-        <xqdoc:description/>
+        <xqdoc:description>The xp:parse function returns a parse tree for an expression.</xqdoc:description>
         <xqdoc:return>parse tree</xqdoc:return>
       </xqdoc:comment>
       <xqdoc:name>xp:parse</xqdoc:name>
@@ -49,7 +54,9 @@ uses basex inspect:functions</xqdoc:see>
     </xqdoc:function>
     <xqdoc:function arity="2">
       <xqdoc:comment>
-        <xqdoc:description/>
+        <xqdoc:description>The xp:parse function returns a parse tree for an expression.</xqdoc:description>
+        <xqdoc:param>$exp sttring to parse</xqdoc:param>
+        <xqdoc:param>$options is a map of control options</xqdoc:param>
         <xqdoc:return>parse tree</xqdoc:return>
       </xqdoc:comment>
       <xqdoc:name>xp:parse</xqdoc:name>
@@ -69,6 +76,9 @@ uses basex inspect:functions</xqdoc:see>
       </xqdoc:return>
     </xqdoc:function>
     <xqdoc:function arity="1">
+      <xqdoc:comment>
+        <xqdoc:description>The xp:to-expression function returns an expression tree corresponding to a given parse tree.</xqdoc:description>
+      </xqdoc:comment>
       <xqdoc:name>xp:to-expression</xqdoc:name>
       <xqdoc:signature>declare function xp:to-expression($in as element()) as xs:string</xqdoc:signature>
       <xqdoc:parameters>
@@ -82,6 +92,9 @@ uses basex inspect:functions</xqdoc:see>
       </xqdoc:return>
     </xqdoc:function>
     <xqdoc:function arity="2">
+      <xqdoc:comment>
+        <xqdoc:description>The xp:to-expression function returns an expression tree corresponding to a given parse tree.</xqdoc:description>
+      </xqdoc:comment>
       <xqdoc:name>xp:to-expression</xqdoc:name>
       <xqdoc:signature>declare function xp:to-expression($in as element(), $options as map(*)) as xs:string</xqdoc:signature>
       <xqdoc:parameters>
@@ -116,7 +129,7 @@ uses basex inspect:functions</xqdoc:see>
     </xqdoc:function>
     <xqdoc:function arity="1">
       <xqdoc:comment>
-        <xqdoc:description/>
+        <xqdoc:description>Get the parser function to be used for the supplied options</xqdoc:description>
         <xqdoc:return>parser function</xqdoc:return>
       </xqdoc:comment>
       <xqdoc:name>xp:version</xqdoc:name>
@@ -133,7 +146,10 @@ uses basex inspect:functions</xqdoc:see>
     </xqdoc:function>
     <xqdoc:function arity="1">
       <xqdoc:name>xp:java-fixup</xqdoc:name>
-      <xqdoc:signature>declare function xp:java-fixup($name as xs:string) as xs:string</xqdoc:signature>
+      <xqdoc:annotations>
+        <xqdoc:annotation name="private"/>
+      </xqdoc:annotations>
+      <xqdoc:signature>declare %private function xp:java-fixup($name as xs:string) as xs:string</xqdoc:signature>
       <xqdoc:parameters>
         <xqdoc:parameter>
           <xqdoc:name>name</xqdoc:name>
@@ -146,7 +162,7 @@ uses basex inspect:functions</xqdoc:see>
     </xqdoc:function>
     <xqdoc:function arity="1">
       <xqdoc:comment>
-        <xqdoc:description/>
+        <xqdoc:description>Select parser function for opts</xqdoc:description>
         <xqdoc:return>parser function as function($xq as xs:string)</xqdoc:return>
       </xqdoc:comment>
       <xqdoc:name>xp:get-parser</xqdoc:name>

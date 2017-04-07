@@ -1,4 +1,4 @@
-<parsers xmlns="http://expath.org/ns/xparse">
+<parsers xmlns="expkg-zone58:text.parse">
 	<!-- available languages and versions with REx parser implementation options. 
 		add "-tree -java -basex" -->
 
@@ -8,7 +8,7 @@
 
 	<parser lang="xquery">
 		<version version="3.1 basex-20161204" ebnf="BaseX" sym="XQuery"
-			options="-ll 2 -backtrack " />
+			options="-ll 2 -backtrack " >For BaseX 8.5 includes XQuery update and full-text</version>
 			
 		<version version="3.1 cr-20151217" ebnf="CR-xquery-31-20151217"
 			sym="XQuery" />

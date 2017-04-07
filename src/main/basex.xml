@@ -8,5 +8,5 @@
   <jar>Parse_XQDocComments.jar</jar>
   <jar>Parse_EcmaScript.jar</jar>
   <jar>Parse_REx.jar</jar>
-  <class>Parse_xpath_30</class>
+  <class>expkg_zone58.ex_xparse.Parse_xpath_30</class>
 </package>

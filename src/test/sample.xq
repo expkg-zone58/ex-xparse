@@ -1,5 +1,6 @@
-import module namespace xp="http://expath.org/ns/xparse";
-"C:\Users\andy\workspace\app-doc\src\static\doc\feats\apps\apps.js"
+import module namespace xp="expkg-zone58:text.parse" (: at "../main/content/xparse.xqm" :);
+
+"resources\apps.js"
 !unparsed-text(.)
 !xp:parse(.,map{"lang":"ecmascript"})
 

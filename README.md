@@ -1,15 +1,32 @@
 # ex-xparse
-Parses expressions in XPath or XQuery into XML trees. 
-An implementation of the EXPath [xparse](https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html) proposal.
+Parses text into syntax trees based using a parser selected from a set of built-in parsers.  
 The [REx](http://www.bottlecaps.de/rex/) parser generator was used to generate the parsers.
-This release uses the -basex option to generate Java for BaseX.
+This release uses the -basex option of REx to generate Java for BaseX.
 
+It can be used to implement the EXPath [xparse proposal](https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html) .
+
+## Requirements
 This release requires BaseX 8.6. This is a result of XQuery spec changes to `map:merge`
 
+## Usage
+
+```xquery
+import module namespace xp="expkg-zone58:text.parse";
+xp:parse("2+3",map{"lang":"xquery","version":"3.1 basex-20161204"}) 
+```
+The second argument provides options to control the parsing of the text from the first argument.
+## Options
+
+| Option | Type---  | Values      |Default  |Notes                                            |
+|--------|----------|-------------|---------|-------------------------------------------------|
+|lang    |xs:string |XPath, XQuery|XPath    |The language to be parsed                        |
+|version |xs:string |             |""       |                                                 |
+|flatten |xs:boolean|             |true()   |Flatten the parse tree                           |
+The selected parser is chosen from the list in `parser.xml`. where the lang matches and version starts-with. see `xp:parser($opts)`
+
 ## Available parsers
-Selected parser is first where lang matches and version starts-with. see `xp:parser($opts)`
 ```xml
-  <parsers xmlns="http://expath.org/ns/xparse">
+  <parsers xmlns="proposal">
     <!-- available languages and versions with REx parser implementation options. 
         add "-tree -java -basex" -->
 
@@ -49,14 +66,7 @@ Selected parser is first where lang matches and version starts-with. see `xp:par
     <!-- </parser> -->
 
 </parsers>
-````
-## Options
-
-| Option | Type---  | Values      |Default  |Notes                                            |
-|--------|----------|-------------|---------|-------------------------------------------------|
-|lang    |xs:string |XPath, XQuery|XPath    |The language to be parsed                        |
-|version |xs:string |             |""       |                                                 |
-|flatten |xs:boolean|             |true()   |Flatten the parse tree                           |
+```
  
 ## Examples
 ```xquery
@@ -214,4 +224,5 @@ at line 1, column 4:
 ...{'a':42}...</ERROR>
 ````
 
-
+## History
+* versions before 0.5 used the namespace `http://expath.org/ns/xparse`

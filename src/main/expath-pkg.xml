@@ -1,9 +1,9 @@
 <package xmlns="http://expath.org/ns/pkg" name="http://expkg-zone58.github.io/ex-xparse"
-	abbrev="ex-xparse" version="0.4.0" spec="1.0">
-	<title>Parse expressions in XPath or XQuery into XML trees</title>
+	abbrev="ex-xparse" version="0.5.1" spec="1.0">
+	<title>Parse expressions in XPath or XQuery into XML trees using REx generated parsers.</title>
 	<dependency processor="basex"/>
 	<xquery>
-		<namespace>http://expath.org/ns/xparse</namespace>
+		<namespace>expkg-zone58:text.parse</namespace>
 		<file>xparse.xqm</file>
 	</xquery>
 </package>
