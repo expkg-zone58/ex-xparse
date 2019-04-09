@@ -1,10 +1,10 @@
 (:~
  : compile java and build jars
  :)
-declare namespace xp="http://expath.org/ns/xparse";
+declare namespace xp="expkg-zone58:text.parse";
 declare namespace pkg="http://www.basex.org/modules/pkg";
 
-declare variable $src:="C:\Users\andy\workspace\ex-xparse\src\main\content\ebnf\";
+
 declare variable $dest:="C:\Users\andy\workspace\ex-xparse\src\java\";
 declare variable $cat:=doc("C:/Users/andy/workspace/ex-xparse/src/main/content/parsers.xml");
 declare variable $bat:="C:/Users/andy/workspace/ex-xparse/tools/compile.bat";

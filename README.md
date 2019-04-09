@@ -1,7 +1,7 @@
 # ex-xparse
 Parses text into syntax trees based using a parser selected from a set of built-in parsers.  
 The [REx](http://www.bottlecaps.de/rex/) parser generator was used to generate the parsers.
-This release uses the -basex option of REx to generate Java for BaseX.
+This release uses the `-basex` option of `REx` to generate Java for BaseX.
 
 It can be used to implement the EXPath [xparse proposal](https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html) .
 
@@ -22,6 +22,7 @@ The second argument provides options to control the parsing of the text from the
 |lang    |xs:string |XPath, XQuery|XPath    |The language to be parsed                        |
 |version |xs:string |             |""       |                                                 |
 |flatten |xs:boolean|             |true()   |Flatten the parse tree                           |
+
 The selected parser is chosen from the list in `parser.xml`. where the lang matches and version starts-with. see `xp:parser($opts)`
 
 ## Available parsers
@@ -35,7 +36,7 @@ The selected parser is chosen from the list in `parser.xml`. where the lang matc
     </parser>
 
     <parser lang="xquery">
-        <version version="3.1 basex-20161204" ebnf="BaseX" sym="XQuery"
+        <version version="3.1 basex-20190408" ebnf="BaseX" sym="XQuery"
             options="-ll 2 -backtrack " />
             
         <version version="3.1 cr-20151217" ebnf="CR-xquery-31-20151217"

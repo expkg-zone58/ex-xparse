@@ -4,15 +4,15 @@
 
 	<parser lang="xpath">
 		<version version="3.0" ebnf="xpath-30" sym="XPath" />
+		<version version="3.1" ebnf="xpath-31" sym="XPath" />
 	</parser>
 
 	<parser lang="xquery">
-		<version version="3.1 basex-20161204" ebnf="BaseX" sym="XQuery"
-			options="-ll 2 -backtrack " >For BaseX 8.5 includes XQuery update and full-text</version>
-			
-		<version version="3.1 cr-20151217" ebnf="CR-xquery-31-20151217"
-			sym="XQuery" />
-
+		<version version="3.1 basex-20190408" ebnf="BaseX" sym="XQuery"
+			options="-ll 2 -backtrack " >For BaseX 9 includes XQuery update and full-text. Does not include http://docs.basex.org/wiki/XQuery_Extensions#Expressions</version>
+		
+		<version version="3.1" ebnf="xquery-31" sym="XQuery" />	
+	
 		<version version="3.0" ebnf="xquery-30" sym="XQuery" />
 
 		<version version="1.0" ebnf="xquery-10" sym="XQuery" />
