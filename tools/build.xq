@@ -1,7 +1,7 @@
 (: create o/ps
  : xar package and xqdoc
  :)
-declare namespace pkg="expkg-zone58:text.parse";
+declare namespace pkg="http://expath.org/ns/pkg";
 import module namespace build = "quodatum.utils.build" at "buildx.xqm";
 declare variable $base:=resolve-uri("../");
 declare variable $src:=resolve-uri("../src/main/");

@@ -25,46 +25,45 @@ The second argument provides options to control the parsing of the text from the
 
 The selected parser is chosen from the list in `parser.xml`. where the lang matches and version starts-with. see `xp:parser($opts)`
 
+flatten omits elements with only one child element and no text.
+
 ## Available parsers
 ```xml
-  <parsers xmlns="proposal">
-    <!-- available languages and versions with REx parser implementation options. 
-        add "-tree -java -basex" -->
+ <parsers xmlns="expkg-zone58:text.parse">
+  <!-- available languages and versions with REx parser implementation options. 
+    add "-tree -java -basex" -->
 
-    <parser lang="xpath">
-        <version version="3.0" ebnf="xpath-30" sym="XPath" />
+  <parser lang="xpath">
+    <version version="3.0" ebnf="xpath-30" sym="XPath" />
+    <version version="3.1" ebnf="xpath-31" sym="XPath" />
+  </parser>
+
+  <parser lang="xquery">
+    <version version="3.1 basex-20190408" ebnf="BaseX" sym="XQuery"
+      options="-ll 2 -backtrack " >For BaseX 9 includes XQuery update and full-text. Does not include http://docs.basex.org/wiki/XQuery_Extensions#Expressions</version>
+    
+    <version version="3.1" ebnf="xquery-31" sym="XQuery" /> 
+  
+    <version version="3.0" ebnf="xquery-30" sym="XQuery" />
+
+    <version version="1.0" ebnf="xquery-10" sym="XQuery" />
+
+    <version version="3.0 ML" ebnf="XQueryML30" sym="XQuery"
+      options="-backtrack" />
+  </parser>
+
+  <parser lang="xqdoc-comments">
+    <version version="20160405" ebnf="XQDocComments" sym="Comments" />
+  </parser>
+
+  <parser lang="ecmascript">
+    <version version="5" ebnf="EcmaScript" sym="Program"
+      options="-ll 1 -backtrack -asi" />
+  </parser>
+  <parser lang="rex">
+        <version version="5.49" ebnf="REx" sym="Grammar" />
     </parser>
-
-    <parser lang="xquery">
-        <version version="3.1 basex-20190408" ebnf="BaseX" sym="XQuery"
-            options="-ll 2 -backtrack " />
-            
-        <version version="3.1 cr-20151217" ebnf="CR-xquery-31-20151217"
-            sym="XQuery" />
-
-        <version version="3.0" ebnf="xquery-30" sym="XQuery" />
-
-        <version version="1.0" ebnf="xquery-10" sym="XQuery" />
-
-        <version version="3.0 ML" ebnf="XQueryML30" sym="XQuery"
-            options="-backtrack" />
-    </parser>
-
-    <parser lang="xqdoc-comments">
-        <version version="20160405" ebnf="XQDocComments" sym="Comments" />
-    </parser>
-
-    <parser lang="ecmascript">
-        <version version="5" ebnf="EcmaScript" sym="Program"
-            options="-ll 1 -backtrack -asi" />
-    </parser>
-    <parser lang="rex">
-        <version version="5.41" ebnf="REx" sym="Grammar" />
-    </parser>
-    <!-- <parser lang="xquery-update"> -->
-    <!-- <version version="3.0 wd-20150219" ebnf="WD-xquery-update-30-20150219" -->
-    <!-- sym="XQuery" /> -->
-    <!-- </parser> -->
+  
 
 </parsers>
 ```

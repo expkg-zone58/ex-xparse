@@ -1,7 +1,7 @@
-// This file was generated on Fri Dec 9, 2016 12:23 (UTC+01) by REx v5.41 which is Copyright (c) 1979-2016 by Gunther Rademacher <grd@gmx.net>
-// REx command line: file.ebnf -backtrack -tree -java -basex -name expkg-zone58.ex-xparse.Parse-XQueryML30
+// This file was generated on Tue Apr 9, 2019 13:18 (UTC+02) by REx v5.49 which is Copyright (c) 1979-2019 by Gunther Rademacher <grd@gmx.net>
+// REx command line: file.ebnf -backtrack -tree -java -basex -name expkg-zone58.text.parse.Parse-XQueryML30
 
-package expkg_zone58.ex_xparse;
+package expkg_zone58.text.parse;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -35,7 +35,13 @@ public class Parse_XQueryML30
     @Override
     public String getMessage()
     {
-      return offending < 0 ? "lexical analysis failed" : "syntax error";
+      return offending < 0
+           ? "lexical analysis failed"
+           : "syntax error";
+    }
+
+    public void serialize(EventHandler eventHandler)
+    {
     }
 
     public int getBegin() {return begin;}
@@ -43,6 +49,7 @@ public class Parse_XQueryML30
     public int getState() {return state;}
     public int getOffending() {return offending;}
     public int getExpected() {return expected;}
+    public boolean isAmbiguousInput() {return false;}
   }
 
   public interface EventHandler
@@ -307,11 +314,11 @@ public class Parse_XQueryML30
     initialize(string, t);
   }
 
-  public void initialize(CharSequence string, EventHandler eh)
+  public void initialize(CharSequence source, EventHandler parsingEventHandler)
   {
-    eventHandler = eh;
-    input = string;
-    size = input.length();
+    eventHandler = parsingEventHandler;
+    input = source;
+    size = source.length();
     reset(0, 0, 0);
   }
 
@@ -355,31 +362,32 @@ public class Parse_XQueryML30
   public static String[] getExpectedTokenSet(ParseException e)
   {
     String[] expected;
-    if (e.getExpected() < 0)
+    if (e.getExpected() >= 0)
     {
-      expected = getTokenSet(- e.getState());
+      expected = new String[]{TOKEN[e.getExpected()]};
     }
     else
     {
-      expected = new String[]{TOKEN[e.getExpected()]};
+      expected = getTokenSet(- e.getState());
     }
     return expected;
   }
 
   public String getErrorMessage(ParseException e)
   {
+    String message = e.getMessage();
     String[] tokenSet = getExpectedTokenSet(e);
     String found = getOffendingToken(e);
+    int size = e.getEnd() - e.getBegin();
+    message += (found == null ? "" : ", found " + found)
+            + "\nwhile expecting "
+            + (tokenSet.length == 1 ? tokenSet[0] : java.util.Arrays.toString(tokenSet))
+            + "\n"
+            + (size == 0 || found != null ? "" : "after successfully scanning " + size + " characters beginning ");
     String prefix = input.subSequence(0, e.getBegin()).toString();
     int line = prefix.replaceAll("[^\n]", "").length() + 1;
     int column = prefix.length() - prefix.lastIndexOf('\n');
-    int size = e.getEnd() - e.getBegin();
-    return e.getMessage()
-         + (found == null ? "" : ", found " + found)
-         + "\nwhile expecting "
-         + (tokenSet.length == 1 ? tokenSet[0] : java.util.Arrays.toString(tokenSet))
-         + "\n"
-         + (size == 0 || found != null ? "" : "after successfully scanning " + size + " characters beginning ")
+    return message
          + "at line " + line + ", column " + column + ":\n..."
          + input.subSequence(e.getBegin(), Math.min(input.length(), e.getBegin() + 64))
          + "...";
@@ -19175,10 +19183,6 @@ public class Parse_XQueryML30
             nonbmp = true;
             ++current;
             c0 = ((c0 & 0x3ff) << 10) + (c1 & 0x3ff) + 0x10000;
-          }
-          else
-          {
-            c0 = -1;
           }
         }
 

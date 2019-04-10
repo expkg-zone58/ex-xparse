@@ -100,7 +100,7 @@ translate($name,"-","_")
 declare function xp:get-parser($opts as map(*)) 
 as function(*){
   let $p:= xp:version($opts)
-  let $code:=``[function($src){Q{java:expkg_zone58.ex_xparse.Parse_`{$p?ebnf}`}parse`{$p?sym}`($src)}]``
+  let $code:=``[function($src){Q{java:expkg_zone58.text.parse.Parse_`{$p?ebnf}`}parse`{$p?sym}`($src)}]``
   return  xquery:eval($code)
 };
 

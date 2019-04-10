@@ -30,11 +30,8 @@
 			options="-ll 1 -backtrack -asi" />
 	</parser>
 	<parser lang="rex">
-        <version version="5.41" ebnf="REx" sym="Grammar" />
+        <version version="5.49" ebnf="REx" sym="Grammar" />
     </parser>
-	<!-- <parser lang="xquery-update"> -->
-	<!-- <version version="3.0 wd-20150219" ebnf="WD-xquery-update-30-20150219" -->
-	<!-- sym="XQuery" /> -->
-	<!-- </parser> -->
+	
 
 </parsers>
