@@ -1,9 +1,10 @@
 (:~
- : ebnf to Java parser for BaseX using REx 
+ : Generate java class for each ebnf referenced in parsers.xml
+ : using REx  
  :)
 declare namespace xp="expkg-zone58:text.parse";
-declare variable $src:="C:\Users\andy\workspace\ex-xparse\src\main\content\ebnf\";
-declare variable $dest:="C:\Users\andy\workspace\ex-xparse\src\java\";
+declare variable $src:=file:resolve-path("../src/main/content/ebnf/",static-base-uri());
+declare variable $dest:=file:resolve-path("../src/java/",static-base-uri());
 declare variable $cat:=doc("../src/main/content/parsers.xml");
 (:~ 
  : Generate code for ebnf using http://www.bottlecaps.de/rex/
@@ -30,10 +31,10 @@ return $result[2]
 declare function local:save-parser($file as xs:string,$command as xs:string?) as empty-sequence()
 {
     let $class:="Parse-" ||$file
-    let $ebnf:="" || file:read-text($src || $file || ".ebnf")
+    let $ebnf:="" || file:read-text($src || "/" || $file || ".ebnf")
     let $command:=``[`{$command}` -tree -java -basex -name expkg-zone58.text.parse.`{$class}`]``
     let $java:= local:rex-request($ebnf,$command )
-    return file:write-text($dest || replace($class,"-","_") || ".java",$java)
+    return file:write-text($dest || "/" || replace($class,"-","_") || ".java",$java)
 };
 
  

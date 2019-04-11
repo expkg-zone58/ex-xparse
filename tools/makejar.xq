@@ -6,7 +6,7 @@ declare namespace pkg="http://www.basex.org/modules/pkg";
 
 
 declare variable $dest:="C:\Users\andy\workspace\ex-xparse\src\java\";
-declare variable $cat:=doc("C:/Users/andy/workspace/ex-xparse/src/main/content/parsers.xml");
+declare variable $cat:=doc("../src/main/content/parsers.xml");
 declare variable $bat:="C:/Users/andy/workspace/ex-xparse/tools/compile.bat";
 declare variable $bx:="C:/Users/andy/workspace/ex-xparse/src/main/basex.xml";
 declare function local:basex($classes){

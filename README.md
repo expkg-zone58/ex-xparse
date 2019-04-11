@@ -12,7 +12,7 @@ This release requires BaseX 8.6. This is a result of XQuery spec changes to `map
 
 ```xquery
 import module namespace xp="expkg-zone58:text.parse";
-xp:parse("2+3",map{"lang":"xquery","version":"3.1 basex-20161204"}) 
+xp:parse("2+3",map{"lang":"xquery","version":"3.1 basex"}) 
 ```
 The second argument provides options to control the parsing of the text from the first argument.
 ## Options
@@ -25,7 +25,7 @@ The second argument provides options to control the parsing of the text from the
 
 The selected parser is chosen from the list in `parser.xml`. where the lang matches and version starts-with. see `xp:parser($opts)`
 
-flatten omits elements with only one child element and no text.
+flatten skips elements with only one child element and no text.
 
 ## Available parsers
 ```xml
@@ -223,6 +223,17 @@ while expecting [S, EOF, '!', '!=', '#', '(', '(:', ')', '*', '+', ',', '-', '/'
 at line 1, column 4:
 ...{'a':42}...</ERROR>
 ````
+## Building
+TODO fix hard coded paths here.
+### Add a new ebnf
+1. create ebnf in `content/ebnf`
+1. add entry in `parsers.xml`
+## after update to ebnf
+1. run `tools/rex.xq` to create java files in `src/java` for all ebnfs referenced in `parsers.xml`
+1. run `tools/makejar.xq` to create jars in `src/java`
+1. copy jars to `main/content`
+1. increment version in `main/expath-pkg.xml`
+1. run `tools/build.xq`
 
 ## History
 * versions before 0.5 used the namespace `http://expath.org/ns/xparse`
