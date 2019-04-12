@@ -6,7 +6,7 @@ This release uses the `-basex` option of `REx` to generate Java for BaseX.
 It can be used to implement the EXPath [xparse proposal](https://lists.w3.org/Archives/Public/public-expath/2015Feb/att-0003/xparse.html) .
 
 ## Requirements
-This release requires BaseX 8.6. This is a result of XQuery spec changes to `map:merge`
+This release requires BaseX 8.6+. This is a result of XQuery spec changes to `map:merge`
 
 ## Usage
 
