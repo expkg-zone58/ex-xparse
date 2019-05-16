@@ -5,11 +5,8 @@ declare variable $opts:=map{
 "version":"3.1 basex",
 "flatten": true()
 };
-let $xq:= "" || file:read-text("C:\Users\andy\git\vue-poc\src\vue-poc\lib\history.xqm")
-(: let $xq:=``[
-  db:replace("!ASYNC",``[run/`{ $id }`.xml]``,$pipe),
-        replace value of node $dbid with ($dbid +1)
-]`` :)
+let $xq:= "" || file:read-text("C:\Users\andy\git\ex-xparse\src\test\resources\xquery\basex\update2.xq")
+
 let $ar:=``[
  ()
 ]``

@@ -10,7 +10,7 @@ declare %unit:test
  :) 
 function  test:js()
 {
- let $r:= "resources\apps.js"
+ let $r:= "resources/ecmascript/apps.js"
         !unparsed-text(.)
         !xp:parse(.,map{"lang":"ecmascript"})
   return unit:assert($r)
