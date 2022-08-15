@@ -1,3 +1,4 @@
+(: test javascript parse :)
 import module namespace xp="expkg-zone58:text.parse" (: at "../main/content/xparse.xqm" :);
 
 "resources\ecmascript\apps.js"

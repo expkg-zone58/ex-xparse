@@ -1,4 +1,4 @@
-// This file was generated on Thu May 16, 2019 18:58 (UTC+02) by REx v5.49 which is Copyright (c) 1979-2019 by Gunther Rademacher <grd@gmx.net>
+// This file was generated on Mon Aug 15, 2022 11:42 (UTC+02) by REx v5.55 which is Copyright (c) 1979-2022 by Gunther Rademacher <grd@gmx.net>
 // REx command line: file.ebnf -tree -java -basex -name expkg-zone58.text.parse.Parse-XQDocComments
 
 package expkg_zone58.text.parse;
@@ -636,11 +636,11 @@ public class Parse_XQDocComments
     }
   }
 
-  private void lookahead1(int set)
+  private void lookahead1(int tokenSetId)
   {
     if (l1 == 0)
     {
-      l1 = match(set);
+      l1 = match(tokenSetId);
       b1 = begin;
       e1 = end;
     }

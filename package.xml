@@ -15,34 +15,53 @@
       <file name="ex-xparse-0.0.0.xar" role="pkg"/>
     </version>
 
-  <version num="0.6.1">
+ 
+  <version num="0.6.12">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.2">
+  <version num="0.6.13">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.3">
+  <version num="0.6.14">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.4">
+  <version num="0.6.15">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.5">
+  <version num="0.6.16">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.6">
+  <version num="0.6.17">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.7">
+  <version num="0.6.18">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.8">
+  <version num="0.6.19">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.9">
+  <version num="0.7.0">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.10">
+  <version num="0.7.1">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+  <version num="0.7.2">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+  <version num="0.7.3">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+  <version num="0.7.4">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+  <version num="0.7.5">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+  <version num="0.7.6">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+  <version num="0.7.7">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
   </pkg>

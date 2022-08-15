@@ -1,4 +1,4 @@
-// This file was generated on Thu May 16, 2019 18:58 (UTC+02) by REx v5.49 which is Copyright (c) 1979-2019 by Gunther Rademacher <grd@gmx.net>
+// This file was generated on Mon Aug 15, 2022 11:42 (UTC+02) by REx v5.55 which is Copyright (c) 1979-2022 by Gunther Rademacher <grd@gmx.net>
 // REx command line: file.ebnf -tree -java -basex -name expkg-zone58.text.parse.Parse-xquery-31
 
 package expkg_zone58.text.parse;
@@ -341,8 +341,8 @@ public class Parse_xquery_31
   {
             b0 = b; e0 = b;
     l1 = l; b1 = b; e1 = e;
-    l2 = 0;
-    l3 = 0;
+    l2 = 0; b2 = 0; e2 = 0;
+    l3 = 0; b3 = 0; e3 = 0;
     end = e;
     eventHandler.reset(input);
   }
@@ -434,6 +434,7 @@ public class Parse_xquery_31
     if (lk == 29128                 // 'xquery' 'encoding'
      || lk == 50376)                // 'xquery' 'version'
     {
+      whitespace();
       parse_VersionDecl();
     }
     lookahead1W(189);               // IntegerLiteral | DecimalLiteral | DoubleLiteral | StringLiteral |
@@ -8346,12 +8347,12 @@ public class Parse_xquery_31
     }
   }
 
-  private int matchW(int set)
+  private int matchW(int tokenSetId)
   {
     int code;
     for (;;)
     {
-      code = match(set);
+      code = match(tokenSetId);
       if (code != 18)               // S^WS
       {
         if (code != 36)             // '(:'
@@ -8364,43 +8365,43 @@ public class Parse_xquery_31
     return code;
   }
 
-  private void lookahead1W(int set)
+  private void lookahead1W(int tokenSetId)
   {
     if (l1 == 0)
     {
-      l1 = matchW(set);
+      l1 = matchW(tokenSetId);
       b1 = begin;
       e1 = end;
     }
   }
 
-  private void lookahead2W(int set)
+  private void lookahead2W(int tokenSetId)
   {
     if (l2 == 0)
     {
-      l2 = matchW(set);
+      l2 = matchW(tokenSetId);
       b2 = begin;
       e2 = end;
     }
     lk = (l2 << 8) | l1;
   }
 
-  private void lookahead3W(int set)
+  private void lookahead3W(int tokenSetId)
   {
     if (l3 == 0)
     {
-      l3 = matchW(set);
+      l3 = matchW(tokenSetId);
       b3 = begin;
       e3 = end;
     }
     lk |= l3 << 16;
   }
 
-  private void lookahead1(int set)
+  private void lookahead1(int tokenSetId)
   {
     if (l1 == 0)
     {
-      l1 = match(set);
+      l1 = match(tokenSetId);
       b1 = begin;
       e1 = end;
     }

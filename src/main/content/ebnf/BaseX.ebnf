@@ -4,10 +4,13 @@ var XQueryParser = exports.XQueryParser = function XQueryParser(string, parsingE
   init(string, parsingEventHandler);
 ?>
 
+/* XQuery 3.1 with fulltext and update version for BAseX 2022-08-15 */
 XQuery   ::= Module EOF
 Module   ::= VersionDecl? ( LibraryModule | MainModule )
 VersionDecl
          ::= 'xquery' ( 'encoding' StringLiteral | 'version' StringLiteral ( 'encoding' StringLiteral )? ) Separator
+MainModule
+         ::= Prolog QueryBody
 LibraryModule
          ::= ModuleDecl Prolog
 ModuleDecl
@@ -74,7 +77,9 @@ DefaultNamespaceDecl
 FTOptionDecl
          ::= 'declare' 'ft-option' FTMatchOptions
 AnnotatedDecl
-         ::= 'declare' Annotation* ( VarDecl | FunctionDecl )
+         ::= 'declare'  (CompatibilityAnnotation | Annotation)* ( VarDecl | FunctionDecl )
+CompatibilityAnnotation 	   
+         ::=  "updating"         
 Annotation
          ::= '%' EQName ( '(' Literal ( ',' Literal )* ')' )?
 VarDecl  ::= 'variable' '$' VarName TypeDeclaration? ( ':=' VarValue | 'external' ( ':=' VarDefaultValue )? )
@@ -178,7 +183,12 @@ CaseClause
          ::= 'case' ( '$' VarName 'as' )? SequenceTypeUnion 'return' ExprSingle
 SequenceTypeUnion
          ::= SequenceType ( '|' SequenceType )*
+
 IfExpr   ::= 'if' '(' Expr ')' 'then' ExprSingle 'else' ExprSingle
+BasexIfExpr   ::= 'if' '(' Expr ')' 'then' ExprSingle
+/* BasexIfTenary   ::= ExprSingle '??' ExprSingle '!!' ExprSingle */
+/* BasexElvis ::= ExprSingle '?:' ExprSingle  */
+
 TryCatchExpr
          ::= TryClause CatchClause+
 TryClause
@@ -425,24 +435,17 @@ TypeDeclaration
 SequenceType
          ::= 'empty-sequence' '(' ')'
            | ItemType ( OccurrenceIndicator / )
+
+ItemType 	::=  	KindTest | ("item" "(" ")") | FunctionTest | MapTest | ArrayTest | AtomicOrUnionType | ParenthesizedItemType
+
 OccurrenceIndicator
          ::= '?'
            | '*'
            | '+'
-ItemType ::= KindTest
-           | 'item' '(' ')'
-           | FunctionTest
-           | AtomicOrUnionType
-           | ParenthesizedItemType
-           | MapType
-
-MapType ::= 'map' '(' ( '*' | (AtomicOrUnionType ',' SequenceType) ) ')'
-
-
-
 
 AtomicOrUnionType
          ::= EQName
+
 KindTest ::= DocumentTest
            | ElementTest
            | AttributeTest
@@ -453,74 +456,54 @@ KindTest ::= DocumentTest
            | TextTest
            | NamespaceNodeTest
            | AnyKindTest
-AnyKindTest
-         ::= 'node' '(' ')'
-DocumentTest
-         ::= 'document-node' '(' ( ElementTest | SchemaElementTest )? ')'
-TextTest ::= 'text' '(' ')'
-CommentTest
-         ::= 'comment' '(' ')'
-NamespaceNodeTest
-         ::= 'namespace-node' '(' ')'
-PITest   ::= 'processing-instruction' '(' ( NCName | StringLiteral )? ')'
-AttributeTest
-         ::= 'attribute' '(' ( AttribNameOrWildcard ( ',' TypeName )? )? ')'
-AttribNameOrWildcard
-         ::= AttributeName
-           | '*'
-SchemaAttributeTest
-         ::= 'schema-attribute' '(' AttributeDeclaration ')'
-AttributeDeclaration
-         ::= AttributeName
-ElementTest
-         ::= 'element' '(' ( ElementNameOrWildcard ( ',' TypeName '?'? )? )? ')'
-ElementNameOrWildcard
-         ::= ElementName
-           | '*'
-SchemaElementTest
-         ::= 'schema-element' '(' ElementDeclaration ')'
-ElementDeclaration
-         ::= ElementName
-AttributeName
-         ::= EQName
-ElementName
-         ::= EQName
-SimpleTypeName
-         ::= TypeName
-TypeName ::= EQName
-FunctionTest
-         ::= Annotation* ( AnyFunctionTest | TypedFunctionTest )
-AnyFunctionTest
-         ::= 'function' '(' '*' ')'
-TypedFunctionTest
-         ::= 'function' '(' ( SequenceType ( ',' SequenceType )* )? ')' 'as' SequenceType
-ParenthesizedItemType
-         ::= '(' ItemType ')'
-URILiteral
-         ::= StringLiteral
-EQName   ::= QName
+AnyKindTest 	   ::= "node" "(" ")" 	
+DocumentTest 	   ::=    	"document-node" "(" (ElementTest | SchemaElementTest)? ")"
+TextTest 	   ::= "text" "(" ")"
+CommentTest 	   ::= "comment" "(" ")" 	
+NamespaceNodeTest 	   ::= "namespace-node" "(" ")" 	
+PITest 	   ::= "processing-instruction" "(" (NCName | StringLiteral)? ")" 	
+AttributeTest 	   ::=    	"attribute" "(" (AttribNameOrWildcard ("," TypeName)?)? ")"
+AttribNameOrWildcard 	   ::= AttributeName | "*" 	
+SchemaAttributeTest 	   ::=    	"schema-attribute" "(" AttributeDeclaration ")" 
+AttributeDeclaration 	   ::=    	AttributeName 	
+ElementTest 	   ::=    	"element" "(" (ElementNameOrWildcard ("," TypeName "?"?)?)? ")"
+ElementNameOrWildcard 	   ::=    	ElementName | "*" 
+SchemaElementTest 	   ::=    	"schema-element" "(" ElementDeclaration ")"
+ElementDeclaration 	   ::=    	ElementName
+AttributeName 	   ::= EQName
+ElementName 	   ::=    	EQName
+SimpleTypeName::= TypeName
+TypeName 	   ::= EQName
+FunctionTest 	   ::= Annotation* (AnyFunctionTest
+                   | TypedFunctionTest) 	
+AnyFunctionTest 	   ::= "function" "(" "*" ")"
+TypedFunctionTest 	   ::= "function" "(" (SequenceType ("," SequenceType)*)? ")" "as" SequenceType 	
+MapTest 	   ::=    	AnyMapTest | TypedMapTest 	
+AnyMapTest 	   ::=    	"map" "(" "*" ")" 	
+TypedMapTest 	   ::=    	"map" "(" AtomicOrUnionType "," SequenceType ")" 	
+ArrayTest 	   ::=    	AnyArrayTest | TypedArrayTest 	
+AnyArrayTest 	   ::=    	"array" "(" "*" ")" 	
+TypedArrayTest 	   ::=    	"array" "(" SequenceType ")"
+ParenthesizedItemType 	   ::= "(" ItemType ")" 	
+URILiteral ::= StringLiteral
+EQName   ::= QName 
            | URIQualifiedName
 FunctionEQName
          ::= FunctionName
-           | URIQualifiedName           
+           | URIQualifiedName
+/* ======  */          
 QName    ::= FunctionName
-           | 'array'
            | 'attribute'
            | 'comment'
-           | 'delete'
            | 'document-node'
            | 'element'
            | 'empty-sequence'
            | 'function'
            | 'if'
-           | 'insert'
            | 'item'
-           | 'map'
            | 'namespace-node'
            | 'node'
            | 'processing-instruction'
-           | 'rename'
-           | 'replace'
            | 'schema-attribute'
            | 'schema-element'
            | 'switch'
@@ -543,6 +526,7 @@ FunctionName
            | 'count'
            | 'declare'
            | 'default'
+           | 'delete'
            | 'descendant'
            | 'descendant-or-self'
            | 'descending'
@@ -562,6 +546,7 @@ FunctionName
            | 'gt'
            | 'idiv'
            | 'import'
+           | 'insert'
            | 'instance'
            | 'intersect'
            | 'invoke'
@@ -581,6 +566,8 @@ FunctionName
            | 'parent'
            | 'preceding'
            | 'preceding-sibling'
+           | 'rename'
+           | 'replace'
            | 'return'
            | 'satisfies'
            | 'self'
@@ -621,9 +608,10 @@ NewNameExpr
 UpdatingFunctionCall
          ::= 'invoke' 'updating' PrimaryExpr '(' ( ExprSingle ( ',' ExprSingle )* )? ')'
 CopyModifyExpr
-         ::= 'copy' '$' VarName ':=' ExprSingle ( ',' '$' VarName ':=' ExprSingle )* 'modify' ExprSingle 'return' ExprSingle
+         ::= 'copy' CopyModifySpec ( ',' CopyModifySpec )* 'modify' ExprSingle 'return' ExprSingle
          
-
+CopyModifySpec
+         ::= '$' VarName ':=' ExprSingle
 
 FTSelection
          ::= FTOr FTPosFilter*
@@ -769,8 +757,7 @@ NCName   ::= NCName^Token
            | 'treat'
            | 'union'
            | 'where'
-MainModule
-         ::= Prolog QueryBody
+
 QueryBody
          ::= Expr
 Expr     ::= ExprSingle ( ',' ExprSingle )*         
@@ -780,6 +767,9 @@ ExprSingle
            | SwitchExpr
            | TypeswitchExpr
            | IfExpr
+           | BasexIfExpr
+/*           | BasexIfTenary */
+/*          | BasexElvis     */
            | TryCatchExpr
            | InsertExpr
            | DeleteExpr

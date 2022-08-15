@@ -11,11 +11,11 @@
 		<version version="3.1 basex-20190516" ebnf="BaseX" sym="XQuery"
 			options="-ll 2 -backtrack " >For BaseX 9 includes XQuery update and full-text. Does not include http://docs.basex.org/wiki/XQuery_Extensions#Expressions</version>
 		
-		<version version="3.1" ebnf="xquery-31" sym="XQuery" />	
+		<version version="3.1 XQuery" ebnf="xquery-31" sym="XQuery" />	
 	
-		<version version="3.0" ebnf="xquery-30" sym="XQuery" />
+		<version version="3.0 XQuery" ebnf="xquery-30" sym="XQuery" />
 
-		<version version="1.0" ebnf="xquery-10" sym="XQuery" />
+		<version version="1.0 XQuery" ebnf="xquery-10" sym="XQuery" />
 
 		<version version="3.0 ML" ebnf="XQueryML30" sym="XQuery"
 			options="-backtrack" />

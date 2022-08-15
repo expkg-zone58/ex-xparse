@@ -1,4 +1,4 @@
-// This file was generated on Thu May 16, 2019 18:58 (UTC+02) by REx v5.49 which is Copyright (c) 1979-2019 by Gunther Rademacher <grd@gmx.net>
+// This file was generated on Mon Aug 15, 2022 11:42 (UTC+02) by REx v5.55 which is Copyright (c) 1979-2022 by Gunther Rademacher <grd@gmx.net>
 // REx command line: file.ebnf -ll 1 -backtrack -asi -tree -java -basex -name expkg-zone58.text.parse.Parse-EcmaScript
 
 package expkg_zone58.text.parse;
@@ -1720,7 +1720,7 @@ public class Parse_EcmaScript
   {
     eventHandler.startNonterminal("PostfixExpression", e0);
     parse_LeftHandSideExpression();
-    if ((l1 == 28 || l1 == 32) && followsLineTerminator()) // '++' | '--'
+    if ((l1 == 28 || l1 == 32) && followsLineTerminator())  // '++' | '--'
     {
       l1 = 38;                      // ';'
       e1 = b1;
@@ -1744,7 +1744,7 @@ public class Parse_EcmaScript
   private void try_PostfixExpression()
   {
     try_LeftHandSideExpression();
-    if ((l1 == 28 || l1 == 32) && followsLineTerminator()) // '++' | '--'
+    if ((l1 == 28 || l1 == 32) && followsLineTerminator())  // '++' | '--'
     {
       l1 = 38;                      // ';'
       e1 = b1;
@@ -5328,10 +5328,18 @@ public class Parse_EcmaScript
 
   private boolean followsLineTerminator()
   {
-    for (int i = e0 == b1 ? b0 : e0; i < b1; ++i)
+    int i = e0;
+    if (e0 == b1)
+    {
+      i = b0;
+    }
+    for (; i < b1; i++)
     {
       int c = input.charAt(i);
-      if (c == 0xA || c == 0xD || c == 0x2028 || c == 0x2029) return true;
+      if (c == 0xA || c == 0xD || c == 0x2028 || c == 0x2029)
+      {
+        return true;
+      }
     }
     return false;
   }
@@ -5371,12 +5379,12 @@ public class Parse_EcmaScript
     }
   }
 
-  private int matchW(int set)
+  private int matchW(int tokenSetId)
   {
     int code;
     for (;;)
     {
-      code = match(set);
+      code = match(tokenSetId);
       if (code != 13                // WhiteSpace
        && code != 14)               // Comment
       {
@@ -5386,11 +5394,11 @@ public class Parse_EcmaScript
     return code;
   }
 
-  private void lookahead1W(int set)
+  private void lookahead1W(int tokenSetId)
   {
     if (l1 == 0)
     {
-      l1 = matchW(set);
+      l1 = matchW(tokenSetId);
       b1 = begin;
       e1 = end;
     }

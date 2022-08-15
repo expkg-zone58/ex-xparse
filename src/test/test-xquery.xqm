@@ -17,6 +17,9 @@ declare %unit:test  function test:run() {
   for $file in $files
   let $xq:=fetch:text(resolve-uri(translate($file,"\","/"),$test:src-folder))
   let $p:=xp:parse($xq || "",$test:xparse_opts) 
-  return  if(name($p) ne "XQuery") then unit:fail( $file)
+  return  if(name($p) ne "XQuery") then 
+            unit:fail( map{"file": $file, "parse":$p}=>serialize(map{"method": "basex"}))
+          else
+            ()
 };
                                      

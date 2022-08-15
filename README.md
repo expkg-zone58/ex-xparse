@@ -70,7 +70,7 @@ flatten skips elements with only one child element and no text.
  
 ## Examples
 ```xquery
-import module namespace xp="http://expath.org/ns/xparse";
+import module namespace xp="expkg-zone58:text.parse";
 xp:parse("2+3",map{"lang":"xquery"}) 
 ````
 result
@@ -89,7 +89,7 @@ result
 ````
 With options
 ```xquery
-import module namespace xp="http://expath.org/ns/xparse";
+import module namespace xp="expkg-zone58:text.parse";
 
 xp:parse("1+2",map{"lang":"xpath","flatten":false()})
 ```
@@ -189,7 +189,7 @@ Result:
 ````
 Versions
 ````
-import module namespace xp="http://expath.org/ns/xparse";
+import module namespace xp="expkg-zone58:text.parse";
 xp:parse("map{'a':42}",map{"lang":"xquery"}) 
 ````
 Result
@@ -213,7 +213,7 @@ Result
 ````
 
 ````
-import module namespace xp="http://expath.org/ns/xparse";
+import module namespace xp="expkg-zone58:text.parse";
 xp:parse("map{'a':42}",map{"lang":"xquery","version":"3.0"}) 
 ````
 Result
