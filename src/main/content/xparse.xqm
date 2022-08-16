@@ -100,6 +100,26 @@ translate($name,"-","_")
 declare function xp:get-parser($opts as map(*)) 
 as function(*){
   let $p:= xp:version($opts)
+  return switch($p?ebnf || "@" ||$p?sym)
+  case "xpath-30@XPath"
+     return Q{java:expkg_zone58.text.parse.Parse_xpath_30}parseXPath#1
+  case "xpath-31@XPath"
+     return Q{java:expkg_zone58.text.parse.Parse_xpath_31}parseXPath#1
+ 
+  case "BaseX@XQuery"
+      return Q{java:expkg_zone58.text.parse.Parse_BaseX}parseXQuery#1            
+  default
+      return  error(xs:QName("xp:get-parser"),"Parser not fouund. key: " || $p?ebnf || "@" ||$p?sym)
+};
+
+(:~
+ : Select parser function for opts
+ : @return parser function as function($xq as xs:string)
+ : @TODO investigate this. (VarRef error)
+ :)
+declare function xp:get-parserX($opts as map(*)) 
+as function(*){
+  let $p:= xp:version($opts)
   let $code:=``[function($src as xs:string){Q{java:expkg_zone58.text.parse.Parse_`{$p?ebnf}`}parse`{$p?sym}`('' || $src )}]``
   return  xquery:eval($code)
 };
