@@ -3,12 +3,14 @@
  :)
 declare namespace xp="expkg-zone58:text.parse";
 declare namespace pkg="http://www.basex.org/modules/pkg";
+declare variable $base:=file:resolve-path("../",file:base-dir());
 
-(: @TODO relative paths :)
-declare variable $dest:="C:\Users\andy\git\ex-xparse\src\java\";
-declare variable $cat:=doc("../src/main/content/parsers.xml");
-declare variable $bat:="C:/Users/andy/git/ex-xparse/tools/compile.bat";
-declare variable $bx:="C:/Users/andy/git/ex-xparse/src/main/basex.xml";
+
+declare variable $dest:="src/java/"=>file:resolve-path($base);
+declare variable $cat:="src/main/content/parsers.xml"=>file:resolve-path($base)=>doc();
+declare variable $bat:="tools/compile.bat"=>file:resolve-path($base);
+declare variable $bx:="src/main/basex.xml"=>file:resolve-path($base);
+
 declare function local:basex($classes){
 <package xmlns="http://www.basex.org/modules/pkg">
 {$classes!<jar>{.}.jar</jar>}
