@@ -231,7 +231,7 @@ TransformWithExpr
          ::= BasexUpdate1Expr ( 'transform' 'with' '{' Expr? '}' )?
  /* BaseX extension http://docs.basex.org/wiki/XQuery_Update#update */        
 BasexUpdate1Expr
-         ::= BasexUpdateExpr ( 'update' '{' ExprSingle '}')?
+         ::= BasexUpdateExpr ( 'update' '{' Expr? '}')?
 BasexUpdateExpr
          ::= ArrowExpr ( 'update' '{' Expr? '}' )*
 /*  BaseX end */        
@@ -608,7 +608,7 @@ TargetExpr
 NewNameExpr
          ::= ExprSingle
 UpdatingFunctionCall
-         ::= 'invoke' 'updating' PrimaryExpr '(' ( ExprSingle ( ',' ExprSingle )* )? ')'
+         ::= 'invoke'? 'updating' PrimaryExpr '(' ( ExprSingle ( ',' ExprSingle )* )? ')'
 CopyModifyExpr
          ::= 'copy' CopyModifySpec ( ',' CopyModifySpec )* 'modify' ExprSingle 'return' ExprSingle
          

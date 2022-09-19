@@ -224,7 +224,7 @@ at line 1, column 4:
 ...{'a':42}...</ERROR>
 ````
 ## Building
-TODO fix hard coded paths here.
+
 ### Add a new ebnf
 1. create ebnf in `content/ebnf`
 1. add entry in `parsers.xml`
