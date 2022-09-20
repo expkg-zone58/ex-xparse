@@ -5,7 +5,7 @@ var XQueryParser = exports.XQueryParser = function XQueryParser(string, parsingE
 ?>
 
 /* XQuery 3.1 with fulltext and update version for BaseX 
-@ date 2022-09-16
+@ date 2022-09-20
 */
 XQuery   ::= Module EOF
 Module   ::= VersionDecl? ( LibraryModule | MainModule )
@@ -582,7 +582,8 @@ FunctionName
            | 'try'
            | 'union'
            | 'unordered'
-           | 'update' 
+           | 'update'
+           | 'updating' 
            | 'validate'
            | 'where'
            | 'with'
@@ -758,6 +759,7 @@ NCName   ::= NCName^Token
            | 'to'
            | 'treat'
            | 'union'
+           | 'updating'
            | 'where'
 
 QueryBody
@@ -929,7 +931,7 @@ NonNCNameChar
           \\ URIQualifiedName NCName^Token QName^Token 'NaN' 'allowing' 'ancestor' 'ancestor-or-self' 'and' 'array' 'as' 'ascending' 'at' 'attribute' 'base-uri' 'boundary-space' 'by' 'case' 'cast' 'castable' 'catch' 'child' 'collation' 'comment' 'construction' 'context' 'copy' 'copy-namespaces' 'count' 'decimal-format' 'decimal-separator' 'declare' 'default' 'delete' 'descendant' 'descendant-or-self' 'descending' 'digit' 'div' 'document' 'document-node' 'element' 'else' 'empty' 'empty-sequence' 'encoding' 'end' 'eq' 'every' 'except' 'exponent-separator' 'external' 'first' 'following' 'following-sibling' 'for' 'function' 'ge' 'greatest' 'group' 'grouping-separator' 'gt' 'idiv' 'if' 'import' 'in' 'infinity' 'inherit' 'insert' 'instance' 'intersect' 'invoke' 'is' 'item' 'last' 'lax' 'le' 'least' 'let' 'lt' 'map' 'minus-sign' 'mod' 'modify' 'module' 'namespace' 'namespace-node' 'ne' 'next' 'no-inherit' 'no-preserve' 'node' 'of' 'only' 'option' 'or' 'order' 'ordered' 'ordering' 'parent' 'pattern-separator' 'per-mille' 'percent' 'preceding' 'preceding-sibling' 'preserve' 'previous' 'processing-instruction' 'rename' 'replace' 'return' 'satisfies' 'schema' 'schema-attribute' 'schema-element' 'self' 'sliding' 'some' 'stable' 'start' 'strict' 'strip' 'switch' 'text' 'then' 'to' 'treat' 'try' 'tumbling' 'type' 'typeswitch' 'union' 'unordered' 'updating' 'validate' 'value' 'variable' 'version' 'when' 'where' 'window' 'with' 'xquery' 'zero-digit'
 '*'       << Wildcard
 QName^Token
-          << 'ancestor' 'ancestor-or-self' 'and' 'array' 'as' 'at' 'ascending' 'attribute' 'case' 'cast' 'castable' 'child' 'collation' 'comment' 'copy' 'count' 'declare' 'default' 'delete' 'descendant' 'descendant-or-self' 'descending' 'div' 'document' 'document-node' 'element' 'else' 'empty' 'empty-sequence' 'end' 'eq' 'every' 'except' 'following' 'following-sibling' 'for' 'function' 'ge' 'group' 'gt' 'idiv' 'if' 'import' 'insert' 'instance' 'intersect' 'invoke' 'is' 'item' 'le' 'let' 'lt' 'map' 'mod' 'modify' 'module' 'namespace' 'namespace-node' 'ne' 'node' 'only' 'or' 'order' 'ordered' 'parent' 'preceding' 'preceding-sibling' 'processing-instruction' 'rename' 'replace' 'return' 'satisfies' 'schema-attribute' 'schema-element' 'self' 'some' 'stable' 'start' 'switch' 'text' 'to' 'transform' 'treat' 'try' 'typeswitch' 'union' 'unordered' 'update' 'validate' 'where' 'with' 'xquery'
+          << 'ancestor' 'ancestor-or-self' 'and' 'array' 'as' 'at' 'ascending' 'attribute' 'case' 'cast' 'castable' 'child' 'collation' 'comment' 'copy' 'count' 'declare' 'default' 'delete' 'descendant' 'descendant-or-self' 'descending' 'div' 'document' 'document-node' 'element' 'else' 'empty' 'empty-sequence' 'end' 'eq' 'every' 'except' 'following' 'following-sibling' 'for' 'function' 'ge' 'group' 'gt' 'idiv' 'if' 'import' 'insert' 'instance' 'intersect' 'invoke' 'is' 'item' 'le' 'let' 'lt' 'map' 'mod' 'modify' 'module' 'namespace' 'namespace-node' 'ne' 'node' 'only' 'or' 'order' 'ordered' 'parent' 'preceding' 'preceding-sibling' 'processing-instruction' 'rename' 'replace' 'return' 'satisfies' 'schema-attribute' 'schema-element' 'self' 'some' 'stable' 'start' 'switch' 'text' 'to' 'transform' 'treat' 'try' 'typeswitch' 'union' 'unordered' 'update' 'updating' 'validate' 'where' 'with' 'xquery'
 NCName^Token
-          << 'and' 'as' 'at' 'ascending'  'case' 'cast' 'castable' 'collation' 'count' 'default' 'delete' 'descending' 'div' 'else' 'empty' 'end' 'eq' 'except' 'first' 'for' 'ge' 'group' 'gt' 'idiv' 'insert' 'instance' 'intersect' 'is' 'last' 'le' 'let' 'lt' 'mod' 'modify' 'ne' 'only' 'or' 'order' 'rename' 'replace' 'return' 'satisfies' 'stable' 'start' 'to' 'transform' 'treat' 'union' 'update' 'where' 'with'
+          << 'and' 'as' 'at' 'ascending'  'case' 'cast' 'castable' 'collation' 'count' 'default' 'delete' 'descending' 'div' 'else' 'empty' 'end' 'eq' 'except' 'first' 'for' 'ge' 'group' 'gt' 'idiv' 'insert' 'instance' 'intersect' 'is' 'last' 'le' 'let' 'lt' 'mod' 'modify' 'ne' 'only' 'or' 'order' 'rename' 'replace' 'return' 'satisfies' 'stable' 'start' 'to' 'transform' 'treat' 'union' 'update' 'updating' 'where' 'with'
           
