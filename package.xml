@@ -14,57 +14,61 @@
       <dependency processor="basex"/>
       <file name="ex-xparse-0.0.0.xar" role="pkg"/>
     </version>
-
- 
-  <version num="0.6.12">
+    <version num="0.6.12">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.13">
+    <version num="0.6.13">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.14">
+    <version num="0.6.14">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.15">
+    <version num="0.6.15">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.16">
+    <version num="0.6.16">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.17">
+    <version num="0.6.17">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.18">
+    <version num="0.6.18">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.6.19">
+    <version num="0.6.19">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.0">
+    <version num="0.7.0">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.1">
+    <version num="0.7.1">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.2">
+    <version num="0.7.2">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.3">
+    <version num="0.7.3">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.4">
+    <version num="0.7.4">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.5">
+    <version num="0.7.5">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.6">
+    <version num="0.7.6">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.7">
+    <version num="0.7.7">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
-  <version num="0.7.8">
+    <version num="0.7.8">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.7.9-SNAPSHOT">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+    <version num="0.7.9">
       <!-- generated: {fn:current-dateTime()} -->
     </version>
   </pkg>

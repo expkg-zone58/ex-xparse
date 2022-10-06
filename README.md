@@ -39,7 +39,7 @@ flatten skips elements with only one child element and no text.
   </parser>
 
   <parser lang="xquery">
-    <version version="3.1 basex-20190408" ebnf="BaseX" sym="XQuery"
+    <version version="3.1 basex-2022-10-06" ebnf="BaseX" sym="XQuery"
       options="-ll 2 -backtrack " >For BaseX 9 includes XQuery update and full-text. Does not include http://docs.basex.org/wiki/XQuery_Extensions#Expressions</version>
     
     <version version="3.1" ebnf="xquery-31" sym="XQuery" /> 
@@ -224,7 +224,7 @@ at line 1, column 4:
 ...{'a':42}...</ERROR>
 ````
 ## Building
-TODO fix hard coded paths here.
+
 ### Add a new ebnf
 1. create ebnf in `content/ebnf`
 1. add entry in `parsers.xml`

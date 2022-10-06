@@ -8,7 +8,7 @@
 	</parser>
 
 	<parser lang="xquery">
-		<version version="3.1 basex-20220816" ebnf="BaseX" sym="XQuery"
+		<version version="3.1 basex-2022106" ebnf="BaseX" sym="XQuery"
 			options="-ll 2 -backtrack " >For BaseX 9 includes XQuery update and full-text. 
 			Does not support Tenary If and Elvis see http://docs.basex.org/wiki/XQuery_Extensions#Expressions</version>
 		

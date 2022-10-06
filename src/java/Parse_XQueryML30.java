@@ -1,4 +1,4 @@
-// This file was generated on Mon Aug 15, 2022 11:42 (UTC+02) by REx v5.55 which is Copyright (c) 1979-2022 by Gunther Rademacher <grd@gmx.net>
+// This file was generated on Thu Oct 6, 2022 19:29 (UTC+02) by REx v5.55 which is Copyright (c) 1979-2022 by Gunther Rademacher <grd@gmx.net>
 // REx command line: file.ebnf -backtrack -tree -java -basex -name expkg-zone58.text.parse.Parse-XQueryML30
 
 package expkg_zone58.text.parse;

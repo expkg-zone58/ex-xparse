@@ -39,5 +39,6 @@ declare function local:save-parser($file as xs:string,$command as xs:string?) as
 
  
 for $ebnf in $cat//xp:version
+where  $ebnf/@ebnf eq "BaseX"
 return local:save-parser($ebnf/@ebnf,$ebnf/@options)
 

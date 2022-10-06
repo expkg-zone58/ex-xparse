@@ -9,7 +9,7 @@ REM e.g. rex EcmaScript
 echo Compile %1 in %cd% ...
 
 mkdir temp
-javac -Xbootclasspath:"C:\Program Files\Java\jdk1.8.0_211\jre\lib\rt.jar" -source 1.8 -target 1.8 -cp "C:\Users\andy\basex.home\basex.951\BaseX.jar" -d temp %1.java
+"%JAVA_JDK%\bin\javac" -Xbootclasspath:"%JAVA_JDK%\jre\lib\rt.jar" -source 1.8 -target 1.8 -cp "%BASEX_HOME%\BaseX.jar" -d temp "%1.java"
 @echo Main-Class: expkg_zone58.ex_xparse.%1 >Manifest.txt
-jar cmf  Manifest.txt %1.jar  -C temp .
+"%JAVA_JDK%\bin\jar" cmf  Manifest.txt %1.jar  -C temp .
 rmdir /s /q temp

@@ -1,1 +1,1 @@
-Main-Class: expkg_zone58.ex_xparse. 
+Main-Class: expkg_zone58.ex_xparse."..\src\java\Parse_BaseX" 
