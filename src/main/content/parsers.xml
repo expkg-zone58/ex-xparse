@@ -31,7 +31,7 @@
 			options="-ll 1 -backtrack -asi" />
 	</parser>
 	<parser lang="rex">
-        <version version="5.49" ebnf="REx" sym="Grammar" />
+        <version version="5.55" ebnf="REx" sym="Grammar" />
     </parser>
 	
 

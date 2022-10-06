@@ -4,7 +4,9 @@ var XQueryParser = exports.XQueryParser = function XQueryParser(string, parsingE
   init(string, parsingEventHandler);
 ?>
 
-/* XQuery 3.1 with fulltext and update version for BAseX 2022-08-15 */
+/* XQuery 3.1 with fulltext and update version for BaseX 
+@ date 2022-09-20
+*/
 XQuery   ::= Module EOF
 Module   ::= VersionDecl? ( LibraryModule | MainModule )
 VersionDecl
@@ -229,7 +231,7 @@ TransformWithExpr
          ::= BasexUpdate1Expr ( 'transform' 'with' '{' Expr? '}' )?
  /* BaseX extension http://docs.basex.org/wiki/XQuery_Update#update */        
 BasexUpdate1Expr
-         ::= BasexUpdateExpr ( 'update' ExprSingle )?
+         ::= BasexUpdateExpr ( 'update' '{' Expr? '}')?
 BasexUpdateExpr
          ::= ArrowExpr ( 'update' '{' Expr? '}' )*
 /*  BaseX end */        
@@ -580,7 +582,8 @@ FunctionName
            | 'try'
            | 'union'
            | 'unordered'
-           | 'update' 
+           | 'update'
+           | 'updating' 
            | 'validate'
            | 'where'
            | 'with'
@@ -756,6 +759,7 @@ NCName   ::= NCName^Token
            | 'to'
            | 'treat'
            | 'union'
+           | 'updating'
            | 'where'
 
 QueryBody

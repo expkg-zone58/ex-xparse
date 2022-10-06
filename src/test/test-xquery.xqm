@@ -14,6 +14,7 @@ declare variable $test:src-folder:=resolve-uri("resources/xquery/.",static-base-
 (:~ Parse all xq files stops at first failure :)
 declare %unit:test  function test:run() {
   let $files:=file:list( $test:src-folder,true(),"*.xq")
+  =>trace("files: ")
   for $file in $files
   let $xq:=fetch:text(resolve-uri(translate($file,"\","/"),$test:src-folder))
   let $p:=xp:parse($xq || " ",$test:xparse_opts) 

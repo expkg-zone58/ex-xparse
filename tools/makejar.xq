@@ -3,12 +3,13 @@
  :)
 declare namespace xp="expkg-zone58:text.parse";
 declare namespace pkg="http://www.basex.org/modules/pkg";
+declare variable $base:=file:resolve-path("../",file:base-dir());
 
 
-declare variable $dest:="../src/java/"=>local:resolve();
-declare variable $cat:=doc("../src/main/content/parsers.xml");
-declare variable $bat:="compile.bat"=>local:resolve();
-declare variable $bx:="../src/main/basex.xml"=>local:resolve();
+declare variable $dest:="src/java/"=>file:resolve-path($base);
+declare variable $cat:="src/main/content/parsers.xml"=>file:resolve-path($base)=>doc();
+declare variable $bat:="tools/compile.bat"=>file:resolve-path($base);
+declare variable $bx:="src/main/basex.xml"=>file:resolve-path($base);
 
 declare function local:basex($classes){
 <package xmlns="http://www.basex.org/modules/pkg">

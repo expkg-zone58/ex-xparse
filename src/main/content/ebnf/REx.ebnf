@@ -423,7 +423,7 @@ CharRange
 CharCodeRange
          ::= CharCode '-' CharCode
 SingleLineComment
-         ::= '//' [^#x000A]* #x000A
+         ::= '//' [^#x000A]* #x000A?
 MultiLineComment
          ::= '/*' ( ( .* - ( .* '*/' .* ) ) - ( Space* 'ws' Space* ':' .* ) ) '*/'
 EOF      ::= $

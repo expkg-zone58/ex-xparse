@@ -1,5 +1,5 @@
 <package xmlns="http://expath.org/ns/pkg" name="http://expkg-zone58.github.io/ex-xparse"
-	abbrev="ex-xparse" version="0.7.9" spec="1.0">
+	abbrev="ex-xparse" version="0.7.12-SNAPSHOT" spec="1.0">
 	<title>Parse expressions in XPath or XQuery into XML trees using REx generated parsers.</title>
 	<dependency processor="basex"/>
 	<xquery>
